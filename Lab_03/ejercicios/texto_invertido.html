@@ -20,14 +20,15 @@
                 <h2><i class="fas fa-code"></i> Código</h2>
                 <button class="run-button" onclick="ejecutarCodigo()"><i class="fas fa-play"></i> Ejecutar</button>
             </div>
-            <pre><code class="language-javascript editable-code">function invertirTexto() {
-    const texto = document.getElementById('textoInput').value;
-    const textoInvertido = texto.split('').reverse().join('');
-    document.getElementById('resultado').textContent = textoInvertido;
-    console.log(`Texto original: ${texto}`);
-    console.log(`Texto invertido: ${textoInvertido}`);
-    return textoInvertido;
-}</code></pre>
+            <pre><code class="language-javascript editable-code">
+                function invertirTexto() {
+                    const texto = document.getElementById('textoInput').value;
+                    const textoInvertido = texto.split('').reverse().join('');
+                    document.getElementById('resultado').textContent = textoInvertido;
+                    console.log(`Texto original: ${texto}`);
+                    console.log(`Texto invertido: ${textoInvertido}`);
+                    return textoInvertido;
+            }</code></pre>
         </section>
 
         <section class="simulation-section">
@@ -82,5 +83,6 @@
             return textoInvertido;
         }
     </script>
+    <script src="../assets/js/code-editor.js"></script>
 </body>
 </html>

@@ -6,12 +6,43 @@
     <title>Día de la Semana | Laboratorio PWeb2</title>
     <link rel="stylesheet" href="../assets/css/main.css">
     <link rel="stylesheet" href="../assets/css/exercise.css">
+    <style>
+        .input-group {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        .input-group input {
+            flex: 1;
+        }
+        .tab-container {
+            display: flex;
+            margin-bottom: 15px;
+        }
+        .tab {
+            padding: 8px 15px;
+            background: #f0f0f0;
+            cursor: pointer;
+            border-radius: 5px 5px 0 0;
+            margin-right: 5px;
+        }
+        .tab.active {
+            background: #3498db;
+            color: white;
+        }
+        .content {
+            display: none;
+        }
+        .content.active {
+            display: block;
+        }
+    </style>
 </head>
 <body>
     <header class="exercise-header">
         <a href="../index.html" class="back-button">« Volver</a>
         <h1>Día de la Semana</h1>
-        <p>Obtiene el día de la semana a partir de una fecha</p>
+        <p>Obtiene el día de la semana a partir de una fecha o número</p>
     </header>
 
     <main class="exercise-container">
@@ -20,10 +51,23 @@
                 <h2><i class="fas fa-code"></i> Código</h2>
                 <button class="run-button" onclick="ejecutarCodigo()"><i class="fas fa-play"></i> Ejecutar</button>
             </div>
-            <pre><code class="language-javascript editable-code">function obtenerDiaSemana(fecha = new Date()) {
-    const dias = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
-    return dias[fecha.getDay()];
-}</code></pre>
+            <pre><code class="language-javascript editable-code">
+                function obtenerDiaSemana(valor) {
+                const dias = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
+                
+                // Si es un número (0-6)
+                if (typeof valor === 'number' && valor >= 0 && valor <= 6) {
+                    return dias[valor];
+                }
+                
+                // Si es una fecha (Date object o string válido)
+                const fecha = new Date(valor);
+                if (!isNaN(fecha.getTime())) {
+                    return dias[fecha.getDay()];
+                }
+                
+                return 'Valor no válido';
+            }</code></pre>
         </section>
 
         <section class="simulation-section">
@@ -31,8 +75,23 @@
                 <h2><i class="fas fa-laptop-code"></i> Simulación</h2>
             </div>
             <div class="simulation-content">
-                <input type="date" id="fechaInput" class="text-input">
-                <button onclick="mostrarDia()" class="action-button">Obtener Día</button>
+                <div class="tab-container">
+                    <div class="tab active" onclick="cambiarTab(0)">Por Fecha</div>
+                    <div class="tab" onclick="cambiarTab(1)">Por Número</div>
+                </div>
+                
+                <div class="content active" id="tab-fecha">
+                    <input type="date" id="fechaInput" class="text-input">
+                    <button onclick="mostrarDiaPorFecha()" class="action-button">Obtener Día</button>
+                </div>
+                
+                <div class="content" id="tab-numero">
+                    <div class="input-group">
+                        <input type="number" id="numeroDia" class="text-input" min="0" max="6" placeholder="0 (Domingo) a 6 (Sábado)">
+                        <button onclick="mostrarDiaPorNumero()" class="action-button">Obtener Día</button>
+                    </div>
+                </div>
+                
                 <div class="result-display">
                     <h3>Resultado:</h3>
                     <div id="resultado" class="output-box"></div>
@@ -59,28 +118,64 @@
             consoleOutput.scrollTop = consoleOutput.scrollHeight;
         };
 
+        function cambiarTab(index) {
+            document.querySelectorAll('.tab').forEach((tab, i) => {
+                tab.classList.toggle('active', i === index);
+            });
+            document.querySelectorAll('.content').forEach((content, i) => {
+                content.classList.toggle('active', i === index);
+            });
+        }
+
         function ejecutarCodigo() {
             try {
                 const code = document.querySelector('.editable-code').textContent;
                 new Function(code)();
+                console.log("Función cargada correctamente");
             } catch (error) {
                 console.error('Error:', error);
             }
         }
 
-        function mostrarDia() {
+        function mostrarDiaPorFecha() {
             const fechaInput = document.getElementById('fechaInput').value;
             const fecha = fechaInput ? new Date(fechaInput) : new Date();
             const dia = obtenerDiaSemana(fecha);
+            
             document.getElementById('resultado').textContent = dia;
-            console.log(`Fecha: ${fecha.toLocaleDateString()}`);
-            console.log(`Día: ${dia}`);
+            console.log(`Fecha ingresada: ${fecha.toLocaleDateString()}`);
+            console.log(`Día obtenido: ${dia}`);
         }
 
-        function obtenerDiaSemana(fecha = new Date()) {
+        function mostrarDiaPorNumero() {
+            const numero = parseInt(document.getElementById('numeroDia').value);
+            const dia = obtenerDiaSemana(numero);
+            
+            document.getElementById('resultado').textContent = isNaN(numero) 
+                ? "Por favor ingrese un número válido (0-6)" 
+                : dia;
+            
+            console.log(`Número ingresado: ${numero}`);
+            console.log(`Día obtenido: ${dia}`);
+        }
+
+        function obtenerDiaSemana(valor) {
             const dias = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
-            return dias[fecha.getDay()];
+            
+            // Si es un número (0-6)
+            if (typeof valor === 'number' && valor >= 0 && valor <= 6) {
+                return dias[valor];
+            }
+            
+            // Si es una fecha (Date object o string válido)
+            const fecha = new Date(valor);
+            if (!isNaN(fecha.getTime())) {
+                return dias[fecha.getDay()];
+            }
+            
+            return 'Valor no válido';
         }
     </script>
+    <script src="../assets/js/code-editor.js"></script>
 </body>
 </html>

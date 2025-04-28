@@ -83,7 +83,10 @@ body {
     margin-bottom: 1rem;
     filter: invert(85%) sepia(30%) saturate(600%) hue-rotate(330deg) brightness(105%) contrast(95%);
 }
-
+.exercise-card, .satellite {
+    animation: none !important;
+    opacity: 1 !important;
+}
 .main-footer {
     text-align: center;
     padding: 1.5rem;
