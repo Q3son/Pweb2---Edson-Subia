@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Extractor de código Meet</title>
+</head>
+<body>
+    <h1>Extraer código de Google Meet</h1>
+    <input type="text" id="meetUrl" placeholder="Ingresa la URL de Google Meet" style="width: 300px;">
+    <button onclick="extraerCodigo()">Extraer código</button>
+    <div id="resultado" style="margin-top: 20px; padding: 10px; border: 1px solid #ccc;"></div>
+
+    <script>
+        function extraerCodigo() {
+            const url = document.getElementById('meetUrl').value;
+            // Buscar el código después de la última /
+            const partes = url.split('/');
+            let codigo = partes[partes.length - 1];
+            // Eliminar guiones si los hay
+            codigo = codigo.replace(/-/g, '');
+            document.getElementById('resultado').textContent = `Código de la sesión: ${codigo}`;
+        }
+    </script>
+</body>
+</html>
