@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cambiar tamaño y color</title>
+    <style>
+        .texto {
+            font-size: 16px;
+            color: black;
+            transition: all 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <h1>Cambiar propiedades del texto</h1>
+    
+    <p id="texto" class="texto">Este es un texto de ejemplo que puedes modificar.</p>
+    
+    <div>
+        <h3>Tamaño:</h3>
+        <button onclick="cambiarTamaño('aumentar')">Aumentar</button>
+        <button onclick="cambiarTamaño('disminuir')">Disminuir</button>
+    </div>
+    
+    <div style="margin-top: 20px;">
+        <h3>Color:</h3>
+        <button onclick="cambiarColor('rojo')">Rojo</button>
+        <button onclick="cambiarColor('azul')">Azul</button>
+        <button onclick="cambiarColor('verde')">Verde</button>
+        <button onclick="cambiarColor('original')">Original</button>
+    </div>
+
+    <script>
+        function cambiarTamaño(accion) {
+            const texto = document.getElementById('texto');
+            let tamaño = parseInt(window.getComputedStyle(texto).fontSize);
+            
+            if (accion === 'aumentar') {
+                tamaño += 2;
+            } else if (accion === 'disminuir' && tamaño > 10) {
+                tamaño -= 2;
+            }
+            
+            texto.style.fontSize = tamaño + 'px';
+        }
+        
+        function cambiarColor(color) {
+            const texto = document.getElementById('texto');
+            const colores = {
+                rojo: '#ff0000',
+                azul: '#0000ff',
+                verde: '#00ff00',
+                original: 'black'
+            };
+            
+            texto.style.color = colores[color];
+        }
+    </script>
+</body>
+</html>
