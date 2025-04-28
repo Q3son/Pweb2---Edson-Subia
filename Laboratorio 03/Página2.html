@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Operaciones</title>
+</head>
+<body>
+    <h1>Calculadora de operaciones</h1>
+    
+    <form onsubmit="calcular(event)">
+        <div>
+            <label for="operador">Operador:</label>
+            <select id="operador" required>
+                <optgroup label="Aritméticos">
+                    <option value="+">Suma (+)</option>
+                    <option value="-">Resta (-)</option>
+                    <option value="*">Multiplicación (*)</option>
+                    <option value="/">División (/)</option>
+                    <option value="%">Módulo (%)</option>
+                    <option value="**">Potencia (**)</option>
+                </optgroup>
+                <optgroup label="Lógicos">
+                    <option value="&&">AND lógico (&&)</option>
+                    <option value="||">OR lógico (||)</option>
+                </optgroup>
+                <optgroup label="Bits">
+                    <option value="&">AND bit a bit (&)</option>
+                    <option value="|">OR bit a bit (|)</option>
+                    <option value="^">XOR bit a bit (^)</option>
+                    <option value="<<">Desplazamiento izquierdo (<<)</option>
+                    <option value=">>">Desplazamiento derecho (>>)</option>
+                </optgroup>
+            </select>
+        </div>
+        
+        <div style="margin-top: 10px;">
+            <label for="valor1">Valor 1:</label>
+            <input type="text" id="valor1" required>
+        </div>
+        
+        <div style="margin-top: 10px;">
+            <label for="valor2">Valor 2:</label>
+            <input type="text" id="valor2" required>
+        </div>
+        
+        <button type="submit" style="margin-top: 10px;">Calcular</button>
+    </form>
+    
+    <div id="resultado" style="margin-top: 20px; padding: 10px; border: 1px solid #ccc;"></div>
+
+    <script>
+        function calcular(event) {
+            event.preventDefault();
+            const operador = document.getElementById('operador').value;
+            let valor1 = document.getElementById('valor1').value;
+            let valor2 = document.getElementById('valor2').value;
+            let resultado;
+            
+            // Convertir valores a número si no son operaciones lógicas
+            if (!['&&', '||'].includes(operador)) {
+                valor1 = Number(valor1);
+                valor2 = Number(valor2);
+            } else {
+                // Para operaciones lógicas, convertir a boolean
+                valor1 = Boolean(valor1);
+                valor2 = Boolean(valor2);
+            }
+            
+            try {
+                switch (operador) {
+                    case '+': resultado = valor1 + valor2; break;
+                    case '-': resultado = valor1 - valor2; break;
+                    case '*': resultado = valor1 * valor2; break;
+                    case '/': resultado = valor1 / valor2; break;
+                    case '%': resultado = valor1 % valor2; break;
+                    case '**': resultado = valor1 ** valor2; break;
+                    case '&&': resultado = valor1 && valor2; break;
+                    case '||': resultado = valor1 || valor2; break;
+                    case '&': resultado = valor1 & valor2; break;
+                    case '|': resultado = valor1 | valor2; break;
+                    case '^': resultado = valor1 ^ valor2; break;
+                    case '<<': resultado = valor1 << valor2; break;
+                    case '>>': resultado = valor1 >> valor2; break;
+                    default: resultado = 'Operador no válido';
+                }
+                
+                document.getElementById('resultado').textContent = `Resultado: ${resultado}`;
+            } catch (error) {
+                document.getElementById('resultado').textContent = `Error: ${error.message}`;
+            }
+        }
+    </script>
+</body>
+</html>
