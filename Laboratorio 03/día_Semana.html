@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Día de la semana</title>
+</head>
+<body>
+    <h1>Obtener día de la semana</h1>
+    <script>
+        function obtenerDiaSemana(numeroDia) {
+            const dias = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
+            return dias[numeroDia];
+        }
+        
+        // Ejemplo de uso
+        const hoy = new Date().getDay();
+        document.write(`<p>Hoy es ${obtenerDiaSemana(hoy)}</p>`);
+    </script>
+</body>
+</html>
