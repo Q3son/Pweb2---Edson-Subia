@@ -3,31 +3,99 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Días para el día de Arequipa</title>
+    <title>Días para Arequipa | Laboratorio PWeb2</title>
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="stylesheet" href="../assets/css/exercise.css">
 </head>
 <body>
-    <h1>¿Cuántos días faltan para el día de Arequipa?</h1>
-    <div id="contador"></div>
+    <header class="exercise-header">
+        <a href="../index.html" class="back-button">« Volver</a>
+        <h1>Días para el Día de Arequipa</h1>
+        <p>Calcula cuántos días faltan para el 15 de agosto</p>
+    </header>
 
+    <main class="exercise-container">
+        <section class="code-section">
+            <div class="section-header">
+                <h2><i class="fas fa-code"></i> Código</h2>
+                <button class="run-button" onclick="ejecutarCodigo()"><i class="fas fa-play"></i> Ejecutar</button>
+            </div>
+            <pre><code class="language-javascript editable-code">function diasParaArequipa() {
+    const hoy = new Date();
+    const año = hoy.getFullYear();
+    let diaArequipa = new Date(año, 7, 15); // 15 de agosto (mes 7)
+    
+    if (hoy > diaArequipa) {
+        diaArequipa = new Date(año + 1, 7, 15);
+    }
+    
+    const diff = diaArequipa - hoy;
+    return Math.ceil(diff / (1000 * 60 * 60 * 24));
+}</code></pre>
+        </section>
+
+        <section class="simulation-section">
+            <div class="section-header">
+                <h2><i class="fas fa-laptop-code"></i> Simulación</h2>
+            </div>
+            <div class="simulation-content">
+                <button onclick="calcularDias()" class="action-button">Calcular</button>
+                <div class="result-display">
+                    <h3>Resultado:</h3>
+                    <div id="resultado" class="output-box"></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="result-section">
+            <div class="section-header">
+                <h2><i class="fas fa-chart-bar"></i> Consola</h2>
+            </div>
+            <div class="console-output" id="console-output"></div>
+        </section>
+    </main>
+
+    <script src="../assets/js/main.js"></script>
     <script>
-        function calcularDiasArequipa() {
+        // Sobreescribir console.log
+        const originalConsole = console.log;
+        console.log = function(message) {
+            originalConsole.apply(console, arguments);
+            const consoleOutput = document.getElementById('console-output');
+            consoleOutput.innerHTML += `> ${message}<br>`;
+            consoleOutput.scrollTop = consoleOutput.scrollHeight;
+        };
+
+        function ejecutarCodigo() {
+            try {
+                const code = document.querySelector('.editable-code').textContent;
+                new Function(code)();
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        }
+
+        function calcularDias() {
+            const dias = diasParaArequipa();
+            document.getElementById('resultado').innerHTML = `
+                <p>Faltan <strong>${dias}</strong> días para el Día de Arequipa</p>
+                <p>Próximo 15 de agosto: ${new Date(new Date().getFullYear(), 7, 15).toLocaleDateString()}</p>
+            `;
+            console.log(`Días calculados: ${dias}`);
+        }
+
+        function diasParaArequipa() {
             const hoy = new Date();
-            const añoActual = hoy.getFullYear();
-            const diaArequipa = new Date(añoActual, 7, 15); // 15 de agosto (mes 7)
+            const año = hoy.getFullYear();
+            let diaArequipa = new Date(año, 7, 15);
             
-            // Si ya pasó este año, calcular para el próximo
             if (hoy > diaArequipa) {
-                diaArequipa.setFullYear(añoActual + 1);
+                diaArequipa = new Date(año + 1, 7, 15);
             }
             
-            const diffTime = diaArequipa - hoy;
-            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-            
-            return diffDays;
+            const diff = diaArequipa - hoy;
+            return Math.ceil(diff / (1000 * 60 * 60 * 24));
         }
-        
-        document.getElementById('contador').textContent = 
-            `Faltan ${calcularDiasArequipa()} días para el día de Arequipa (15 de agosto)`;
     </script>
 </body>
 </html>

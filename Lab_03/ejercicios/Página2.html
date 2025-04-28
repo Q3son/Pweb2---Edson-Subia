@@ -3,91 +3,144 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Operaciones</title>
+    <title>Calculadora | Laboratorio PWeb2</title>
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="stylesheet" href="../assets/css/exercise.css">
 </head>
 <body>
-    <h1>Calculadora de operaciones</h1>
-    
-    <form onsubmit="calcular(event)">
-        <div>
-            <label for="operador">Operador:</label>
-            <select id="operador" required>
-                <optgroup label="Aritméticos">
-                    <option value="+">Suma (+)</option>
-                    <option value="-">Resta (-)</option>
-                    <option value="*">Multiplicación (*)</option>
-                    <option value="/">División (/)</option>
-                    <option value="%">Módulo (%)</option>
-                    <option value="**">Potencia (**)</option>
-                </optgroup>
-                <optgroup label="Lógicos">
-                    <option value="&&">AND lógico (&&)</option>
-                    <option value="||">OR lógico (||)</option>
-                </optgroup>
-                <optgroup label="Bits">
-                    <option value="&">AND bit a bit (&)</option>
-                    <option value="|">OR bit a bit (|)</option>
-                    <option value="^">XOR bit a bit (^)</option>
-                    <option value="<<">Desplazamiento izquierdo (<<)</option>
-                    <option value=">>">Desplazamiento derecho (>>)</option>
-                </optgroup>
-            </select>
-        </div>
-        
-        <div style="margin-top: 10px;">
-            <label for="valor1">Valor 1:</label>
-            <input type="text" id="valor1" required>
-        </div>
-        
-        <div style="margin-top: 10px;">
-            <label for="valor2">Valor 2:</label>
-            <input type="text" id="valor2" required>
-        </div>
-        
-        <button type="submit" style="margin-top: 10px;">Calcular</button>
-    </form>
-    
-    <div id="resultado" style="margin-top: 20px; padding: 10px; border: 1px solid #ccc;"></div>
+    <header class="exercise-header">
+        <a href="../index.html" class="back-button">« Volver</a>
+        <h1>Calculadora de Operaciones</h1>
+        <p>Realiza operaciones aritméticas, lógicas y de bits</p>
+    </header>
 
-    <script>
-        function calcular(event) {
-            event.preventDefault();
-            const operador = document.getElementById('operador').value;
-            let valor1 = document.getElementById('valor1').value;
-            let valor2 = document.getElementById('valor2').value;
-            let resultado;
-            
-            // Convertir valores a número si no son operaciones lógicas
-            if (!['&&', '||'].includes(operador)) {
-                valor1 = Number(valor1);
-                valor2 = Number(valor2);
-            } else {
-                // Para operaciones lógicas, convertir a boolean
-                valor1 = Boolean(valor1);
-                valor2 = Boolean(valor2);
-            }
-            
-            try {
-                switch (operador) {
-                    case '+': resultado = valor1 + valor2; break;
-                    case '-': resultado = valor1 - valor2; break;
-                    case '*': resultado = valor1 * valor2; break;
-                    case '/': resultado = valor1 / valor2; break;
-                    case '%': resultado = valor1 % valor2; break;
-                    case '**': resultado = valor1 ** valor2; break;
-                    case '&&': resultado = valor1 && valor2; break;
-                    case '||': resultado = valor1 || valor2; break;
-                    case '&': resultado = valor1 & valor2; break;
-                    case '|': resultado = valor1 | valor2; break;
-                    case '^': resultado = valor1 ^ valor2; break;
-                    case '<<': resultado = valor1 << valor2; break;
-                    case '>>': resultado = valor1 >> valor2; break;
-                    default: resultado = 'Operador no válido';
-                }
+    <main class="exercise-container">
+        <section class="code-section">
+            <div class="section-header">
+                <h2><i class="fas fa-code"></i> Código</h2>
+                <button class="run-button" onclick="ejecutarCodigo()"><i class="fas fa-play"></i> Ejecutar</button>
+            </div>
+            <pre><code class="language-javascript editable-code">function calcular(operador, a, b) {
+    a = Number(a);
+    b = Number(b);
+    
+    switch (operador) {
+        case '+': return a + b;
+        case '-': return a - b;
+        case '*': return a * b;
+        case '/': return a / b;
+        case '%': return a % b;
+        case '**': return a ** b;
+        case '&': return a & b;
+        case '|': return a | b;
+        case '^': return a ^ b;
+        case '<<': return a << b;
+        case '>>': return a >> b;
+        case '&&': return Boolean(a && b);
+        case '||': return Boolean(a || b);
+        default: return 'Operador no válido';
+    }
+}</code></pre>
+        </section>
+
+        <section class="simulation-section">
+            <div class="section-header">
+                <h2><i class="fas fa-laptop-code"></i> Simulación</h2>
+            </div>
+            <div class="simulation-content">
+                <select id="operador" class="text-input">
+                    <optgroup label="Aritméticos">
+                        <option value="+">Suma (+)</option>
+                        <option value="-">Resta (-)</option>
+                        <option value="*">Multiplicación (*)</option>
+                        <option value="/">División (/)</option>
+                        <option value="%">Módulo (%)</option>
+                        <option value="**">Potencia (**)</option>
+                    </optgroup>
+                    <optgroup label="Bits">
+                        <option value="&">AND (&)</option>
+                        <option value="|">OR (|)</option>
+                        <option value="^">XOR (^)</option>
+                        <option value="<<">Despl. Izquierdo (<<)</option>
+                        <option value=">>">Despl. Derecho (>>)</option>
+                    </optgroup>
+                    <optgroup label="Lógicos">
+                        <option value="&&">AND Lógico (&&)</option>
+                        <option value="||">OR Lógico (||)</option>
+                    </optgroup>
+                </select>
                 
-                document.getElementById('resultado').textContent = `Resultado: ${resultado}`;
+                <input type="number" id="valorA" placeholder="Valor A" class="text-input">
+                <input type="number" id="valorB" placeholder="Valor B" class="text-input">
+                
+                <button onclick="realizarCalculo()" class="action-button">Calcular</button>
+                
+                <div class="result-display">
+                    <h3>Resultado:</h3>
+                    <div id="resultado" class="output-box"></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="result-section">
+            <div class="section-header">
+                <h2><i class="fas fa-chart-bar"></i> Consola</h2>
+            </div>
+            <div class="console-output" id="console-output"></div>
+        </section>
+    </main>
+
+    <script src="../assets/js/main.js"></script>
+    <script>
+        // Sobreescribir console.log
+        const originalConsole = console.log;
+        console.log = function(message) {
+            originalConsole.apply(console, arguments);
+            const consoleOutput = document.getElementById('console-output');
+            consoleOutput.innerHTML += `> ${message}<br>`;
+            consoleOutput.scrollTop = consoleOutput.scrollHeight;
+        };
+
+        function ejecutarCodigo() {
+            try {
+                const code = document.querySelector('.editable-code').textContent;
+                new Function(code)();
             } catch (error) {
-                document.getElementById('resultado').textContent = `Error: ${error.message}`;
+                console.error('Error:', error);
+            }
+        }
+
+        function realizarCalculo() {
+            const operador = document.getElementById('operador').value;
+            const a = document.getElementById('valorA').value;
+            const b = document.getElementById('valorB').value;
+            
+            const resultado = calcular(operador, a, b);
+            
+            document.getElementById('resultado').textContent = resultado;
+            console.log(`Operación: ${a} ${operador} ${b}`);
+            console.log(`Resultado: ${resultado}`);
+        }
+
+        function calcular(operador, a, b) {
+            a = Number(a);
+            b = Number(b);
+            
+            switch (operador) {
+                case '+': return a + b;
+                case '-': return a - b;
+                case '*': return a * b;
+                case '/': return a / b;
+                case '%': return a % b;
+                case '**': return a ** b;
+                case '&': return a & b;
+                case '|': return a | b;
+                case '^': return a ^ b;
+                case '<<': return a << b;
+                case '>>': return a >> b;
+                case '&&': return Boolean(a && b);
+                case '||': return Boolean(a || b);
+                default: return 'Operador no válido';
             }
         }
     </script>

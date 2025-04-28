@@ -3,58 +3,121 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cambiar tamaño y color</title>
-    <style>
-        .texto {
-            font-size: 16px;
-            color: black;
-            transition: all 0.3s ease;
-        }
-    </style>
+    <title>Editor Texto | Laboratorio PWeb2</title>
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="stylesheet" href="../assets/css/exercise.css">
 </head>
 <body>
-    <h1>Cambiar propiedades del texto</h1>
-    
-    <p id="texto" class="texto">Este es un texto de ejemplo que puedes modificar.</p>
-    
-    <div>
-        <h3>Tamaño:</h3>
-        <button onclick="cambiarTamaño('aumentar')">Aumentar</button>
-        <button onclick="cambiarTamaño('disminuir')">Disminuir</button>
-    </div>
-    
-    <div style="margin-top: 20px;">
-        <h3>Color:</h3>
-        <button onclick="cambiarColor('rojo')">Rojo</button>
-        <button onclick="cambiarColor('azul')">Azul</button>
-        <button onclick="cambiarColor('verde')">Verde</button>
-        <button onclick="cambiarColor('original')">Original</button>
-    </div>
+    <header class="exercise-header">
+        <a href="../index.html" class="back-button">« Volver</a>
+        <h1>Editor de Texto</h1>
+        <p>Cambia tamaño y color de un texto</p>
+    </header>
 
+    <main class="exercise-container">
+        <section class="code-section">
+            <div class="section-header">
+                <h2><i class="fas fa-code"></i> Código</h2>
+                <button class="run-button" onclick="ejecutarCodigo()"><i class="fas fa-play"></i> Ejecutar</button>
+            </div>
+            <pre><code class="language-javascript editable-code">let tamañoActual = 16;
+
+function cambiarTamaño(accion) {
+    const texto = document.getElementById('textoEditable');
+    if (accion === 'aumentar') {
+        tamañoActual += 2;
+    } else if (accion === 'disminuir' && tamañoActual > 10) {
+        tamañoActual -= 2;
+    }
+    texto.style.fontSize = `${tamañoActual}px`;
+}
+
+function cambiarColor(color) {
+    const texto = document.getElementById('textoEditable');
+    const colores = {
+        rojo: '#ff0000',
+        azul: '#0000ff',
+        verde: '#00ff00',
+        negro: '#000000'
+    };
+    texto.style.color = colores[color] || colores.negro;
+}</code></pre>
+        </section>
+
+        <section class="simulation-section">
+            <div class="section-header">
+                <h2><i class="fas fa-laptop-code"></i> Simulación</h2>
+            </div>
+            <div class="simulation-content">
+                <div id="textoEditable" class="editable-text">
+                    Este es un texto de ejemplo que puedes modificar.
+                </div>
+                
+                <div class="controls">
+                    <h3>Tamaño:</h3>
+                    <button onclick="cambiarTamaño('aumentar')" class="action-button">Aumentar</button>
+                    <button onclick="cambiarTamaño('disminuir')" class="action-button">Disminuir</button>
+                    
+                    <h3>Color:</h3>
+                    <button onclick="cambiarColor('rojo')" class="action-button red">Rojo</button>
+                    <button onclick="cambiarColor('azul')" class="action-button blue">Azul</button>
+                    <button onclick="cambiarColor('verde')" class="action-button green">Verde</button>
+                    <button onclick="cambiarColor('negro')" class="action-button">Negro</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="result-section">
+            <div class="section-header">
+                <h2><i class="fas fa-chart-bar"></i> Consola</h2>
+            </div>
+            <div class="console-output" id="console-output"></div>
+        </section>
+    </main>
+
+    <script src="../assets/js/main.js"></script>
     <script>
-        function cambiarTamaño(accion) {
-            const texto = document.getElementById('texto');
-            let tamaño = parseInt(window.getComputedStyle(texto).fontSize);
-            
-            if (accion === 'aumentar') {
-                tamaño += 2;
-            } else if (accion === 'disminuir' && tamaño > 10) {
-                tamaño -= 2;
+        // Sobreescribir console.log
+        const originalConsole = console.log;
+        console.log = function(message) {
+            originalConsole.apply(console, arguments);
+            const consoleOutput = document.getElementById('console-output');
+            consoleOutput.innerHTML += `> ${message}<br>`;
+            consoleOutput.scrollTop = consoleOutput.scrollHeight;
+        };
+
+        let tamañoActual = 16;
+
+        function ejecutarCodigo() {
+            try {
+                const code = document.querySelector('.editable-code').textContent;
+                new Function(code)();
+            } catch (error) {
+                console.error('Error:', error);
             }
-            
-            texto.style.fontSize = tamaño + 'px';
         }
-        
+
+        function cambiarTamaño(accion) {
+            const texto = document.getElementById('textoEditable');
+            if (accion === 'aumentar') {
+                tamañoActual += 2;
+            } else if (accion === 'disminuir' && tamañoActual > 10) {
+                tamañoActual -= 2;
+            }
+            texto.style.fontSize = `${tamañoActual}px`;
+            console.log(`Tamaño actual: ${tamañoActual}px`);
+        }
+
         function cambiarColor(color) {
-            const texto = document.getElementById('texto');
+            const texto = document.getElementById('textoEditable');
             const colores = {
                 rojo: '#ff0000',
                 azul: '#0000ff',
                 verde: '#00ff00',
-                original: 'black'
+                negro: '#000000'
             };
-            
-            texto.style.color = colores[color];
+            texto.style.color = colores[color] || colores.negro;
+            console.log(`Color cambiado a: ${color}`);
         }
     </script>
 </body>

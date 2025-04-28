@@ -3,48 +3,125 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Suma de tabla dinámica</title>
+    <title>Suma Tabla | Laboratorio PWeb2</title>
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="stylesheet" href="../assets/css/exercise.css">
 </head>
 <body>
-    <h1>Suma de valores en tabla dinámica</h1>
-    <form onsubmit="generarTabla(event)">
-        <label for="cantidad">Número de valores:</label>
-        <input type="number" id="cantidad" min="1" required>
-        <button type="submit">Generar tabla</button>
-    </form>
-    
-    <div id="tablaContainer" style="margin-top: 20px;"></div>
-    <div id="resultadoSuma" style="margin-top: 20px; padding: 10px; border: 1px solid #ccc;"></div>
+    <header class="exercise-header">
+        <a href="../index.html" class="back-button">« Volver</a>
+        <h1>Suma de Tabla Dinámica</h1>
+        <p>Genera una tabla aleatoria y calcula la suma</p>
+    </header>
 
+    <main class="exercise-container">
+        <section class="code-section">
+            <div class="section-header">
+                <h2><i class="fas fa-code"></i> Código</h2>
+                <button class="run-button" onclick="ejecutarCodigo()"><i class="fas fa-play"></i> Ejecutar</button>
+            </div>
+            <pre><code class="language-javascript editable-code">function generarTabla(filas) {
+    const tabla = [];
+    for (let i = 0; i < filas; i++) {
+        tabla.push(Math.floor(Math.random() * 100) + 1);
+    }
+    return tabla;
+}
+
+function calcularSuma(tabla) {
+    return tabla.reduce((sum, num) => sum + num, 0);
+}</code></pre>
+        </section>
+
+        <section class="simulation-section">
+            <div class="section-header">
+                <h2><i class="fas fa-laptop-code"></i> Simulación</h2>
+            </div>
+            <div class="simulation-content">
+                <input type="number" id="filasInput" min="1" max="20" value="5" class="text-input">
+                <button onclick="crearTabla()" class="action-button">Generar Tabla</button>
+                <button onclick="calcularSumaTabla()" class="action-button">Calcular Suma</button>
+                <div class="result-display">
+                    <h3>Tabla:</h3>
+                    <div id="tablaContainer"></div>
+                    <h3>Suma:</h3>
+                    <div id="sumaResultado" class="output-box"></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="result-section">
+            <div class="section-header">
+                <h2><i class="fas fa-chart-bar"></i> Consola</h2>
+            </div>
+            <div class="console-output" id="console-output"></div>
+        </section>
+    </main>
+
+    <script src="../assets/js/main.js"></script>
     <script>
-        function generarTabla(event) {
-            event.preventDefault();
-            const cantidad = parseInt(document.getElementById('cantidad').value);
-            const container = document.getElementById('tablaContainer');
-            
-            let tablaHTML = '<table border="1"><tr><th>Número</th><th>Valor</th></tr>';
-            
-            for (let i = 0; i < cantidad; i++) {
-                const valor = Math.floor(Math.random() * 100) + 1; // Valores entre 1 y 100
-                tablaHTML += `<tr><td>${i + 1}</td><td class="valor">${valor}</td></tr>`;
+        // Sobreescribir console.log
+        const originalConsole = console.log;
+        console.log = function(message) {
+            originalConsole.apply(console, arguments);
+            const consoleOutput = document.getElementById('console-output');
+            consoleOutput.innerHTML += `> ${message}<br>`;
+            consoleOutput.scrollTop = consoleOutput.scrollHeight;
+        };
+
+        let tablaActual = [];
+
+        function ejecutarCodigo() {
+            try {
+                const code = document.querySelector('.editable-code').textContent;
+                new Function(code)();
+            } catch (error) {
+                console.error('Error:', error);
             }
-            
-            tablaHTML += '</table>';
-            tablaHTML += '<button onclick="calcularSuma()" style="margin-top: 10px;">Calcular suma</button>';
-            
-            container.innerHTML = tablaHTML;
-            document.getElementById('resultadoSuma').textContent = '';
         }
-        
-        function calcularSuma() {
-            const valores = document.getElementsByClassName('valor');
-            let suma = 0;
-            
-            for (let i = 0; i < valores.length; i++) {
-                suma += parseInt(valores[i].textContent);
+
+        function crearTabla() {
+            const filas = parseInt(document.getElementById('filasInput').value);
+            tablaActual = generarTabla(filas);
+            mostrarTabla(tablaActual);
+            console.log('Tabla generada:', tablaActual);
+        }
+
+        function calcularSumaTabla() {
+            if (tablaActual.length === 0) {
+                console.log('Primero genera una tabla');
+                return;
             }
-            
-            document.getElementById('resultadoSuma').textContent = `La suma total es: ${suma}`;
+            const suma = calcularSuma(tablaActual);
+            document.getElementById('sumaResultado').textContent = suma;
+            console.log(`Suma calculada: ${suma}`);
+        }
+
+        function mostrarTabla(tabla) {
+            const container = document.getElementById('tablaContainer');
+            container.innerHTML = `
+                <table class="data-table">
+                    <tr><th>Índice</th><th>Valor</th></tr>
+                    ${tabla.map((valor, index) => `
+                        <tr>
+                            <td>${index + 1}</td>
+                            <td>${valor}</td>
+                        </tr>
+                    `).join('')}
+                </table>
+            `;
+        }
+
+        function generarTabla(filas) {
+            const tabla = [];
+            for (let i = 0; i < filas; i++) {
+                tabla.push(Math.floor(Math.random() * 100) + 1);
+            }
+            return tabla;
+        }
+
+        function calcularSuma(tabla) {
+            return tabla.reduce((sum, num) => sum + num, 0);
         }
     </script>
 </body>

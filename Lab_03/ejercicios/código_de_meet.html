@@ -3,23 +3,95 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Extractor de código Meet</title>
+    <title>Código Meet | Laboratorio PWeb2</title>
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="stylesheet" href="../assets/css/exercise.css">
 </head>
 <body>
-    <h1>Extraer código de Google Meet</h1>
-    <input type="text" id="meetUrl" placeholder="Ingresa la URL de Google Meet" style="width: 300px;">
-    <button onclick="extraerCodigo()">Extraer código</button>
-    <div id="resultado" style="margin-top: 20px; padding: 10px; border: 1px solid #ccc;"></div>
+    <header class="exercise-header">
+        <a href="../index.html" class="back-button">« Volver</a>
+        <h1>Extraer Código Meet</h1>
+        <p>Extrae el código de una URL de Google Meet</p>
+    </header>
 
+    <main class="exercise-container">
+        <section class="code-section">
+            <div class="section-header">
+                <h2><i class="fas fa-code"></i> Código</h2>
+                <button class="run-button" onclick="ejecutarCodigo()"><i class="fas fa-play"></i> Ejecutar</button>
+            </div>
+            <pre><code class="language-javascript editable-code">function extraerCodigoMeet(url) {
+    if (!url) return '';
+    
+    // Extraer la parte después de la última /
+    const partes = url.split('/');
+    let codigo = partes[partes.length - 1];
+    
+    // Eliminar parámetros (si existen)
+    codigo = codigo.split('?')[0];
+    
+    // Eliminar guiones
+    return codigo.replace(/-/g, '');
+}</code></pre>
+        </section>
+
+        <section class="simulation-section">
+            <div class="section-header">
+                <h2><i class="fas fa-laptop-code"></i> Simulación</h2>
+            </div>
+            <div class="simulation-content">
+                <input type="text" id="meetUrl" placeholder="https://meet.google.com/abc-defg-hij" class="text-input">
+                <button onclick="procesarUrl()" class="action-button">Extraer Código</button>
+                <div class="result-display">
+                    <h3>Resultado:</h3>
+                    <div id="resultado" class="output-box"></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="result-section">
+            <div class="section-header">
+                <h2><i class="fas fa-chart-bar"></i> Consola</h2>
+            </div>
+            <div class="console-output" id="console-output"></div>
+        </section>
+    </main>
+
+    <script src="../assets/js/main.js"></script>
     <script>
-        function extraerCodigo() {
+        // Sobreescribir console.log
+        const originalConsole = console.log;
+        console.log = function(message) {
+            originalConsole.apply(console, arguments);
+            const consoleOutput = document.getElementById('console-output');
+            consoleOutput.innerHTML += `> ${message}<br>`;
+            consoleOutput.scrollTop = consoleOutput.scrollHeight;
+        };
+
+        function ejecutarCodigo() {
+            try {
+                const code = document.querySelector('.editable-code').textContent;
+                new Function(code)();
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        }
+
+        function procesarUrl() {
             const url = document.getElementById('meetUrl').value;
-            // Buscar el código después de la última /
+            const codigo = extraerCodigoMeet(url);
+            document.getElementById('resultado').textContent = codigo || 'No se encontró código';
+            console.log(`URL original: ${url}`);
+            console.log(`Código extraído: ${codigo}`);
+        }
+
+        function extraerCodigoMeet(url) {
+            if (!url) return '';
+            
             const partes = url.split('/');
             let codigo = partes[partes.length - 1];
-            // Eliminar guiones si los hay
-            codigo = codigo.replace(/-/g, '');
-            document.getElementById('resultado').textContent = `Código de la sesión: ${codigo}`;
+            codigo = codigo.split('?')[0];
+            return codigo.replace(/-/g, '');
         }
     </script>
 </body>
