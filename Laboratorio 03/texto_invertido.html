@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invertir Texto</title>
+</head>
+<body>
+    <h1>Invertir Texto</h1>
+    <input type="text" id="textoInput" placeholder="Escribe algo...">
+    <button onclick="invertirTexto()">Invertir</button>
+    <div id="resultado" style="margin-top: 20px; padding: 10px; border: 1px solid #ccc;"></div>
+
+    <script>
+        function invertirTexto() {
+            const texto = document.getElementById('textoInput').value;
+            const textoInvertido = texto.split('').reverse().join('');
+            document.getElementById('resultado').textContent = textoInvertido;
+        }
+    </script>
+</body>
+</html>
