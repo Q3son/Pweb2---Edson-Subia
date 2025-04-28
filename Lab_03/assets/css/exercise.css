@@ -1,0 +1,135 @@
+.exercise-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('../img/backgrounds/code-bg.jpg') no-repeat center center;
+    background-size: cover;
+    z-index: -1;
+    opacity: 0.5;
+}
+
+.exercise-header {
+    text-align: center;
+    padding: 2rem;
+    background-color: rgba(44, 62, 80, 0.9);
+    margin-bottom: 2rem;
+    position: relative;
+}
+
+.back-button {
+    position: absolute;
+    left: 2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--light-text);
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    background-color: rgba(247, 223, 30, 0.2);
+    transition: all 0.3s;
+}
+
+.back-button:hover {
+    background-color: rgba(247, 223, 30, 0.4);
+}
+
+.exercise-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    padding: 0 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.code-section, .simulation-section {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.section-header {
+    background-color: var(--secondary-color);
+    color: var(--light-text);
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.section-header h2 {
+    margin: 0;
+    font-size: 1.2rem;
+}
+
+pre code {
+    display: block;
+    padding: 1.5rem;
+    background: #f8f9fa;
+    color: #333;
+    font-family: 'Courier New', monospace;
+    line-height: 1.5;
+    overflow-x: auto;
+}
+
+.simulation-content {
+    padding: 1.5rem;
+    color: #333;
+}
+
+.text-input {
+    width: 100%;
+    padding: 0.8rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.action-button {
+    background-color: var(--primary-color);
+    color: #333;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s;
+}
+
+.action-button:hover {
+    background-color: #f0d20f;
+    transform: translateY(-2px);
+}
+
+.output-box {
+    min-height: 100px;
+    padding: 1rem;
+    background: #f8f9fa;
+    border: 1px dashed #ccc;
+    margin-top: 1rem;
+    border-radius: 5px;
+}
+
+.exercise-footer {
+    text-align: center;
+    padding: 1.5rem;
+    margin-top: 2rem;
+    background-color: rgba(44, 62, 80, 0.9);
+}
+
+@media (max-width: 768px) {
+    .exercise-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .back-button {
+        position: static;
+        transform: none;
+        margin-bottom: 1rem;
+        display: inline-block;
+    }
+}

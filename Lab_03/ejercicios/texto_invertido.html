@@ -3,19 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Invertir Texto</title>
+    <title>Invertir Texto | Laboratorio PWeb2</title>
+    <link rel="stylesheet" href="../assets/css/exercise.css">
+    <link rel="stylesheet" href="../assets/css/main.css">
 </head>
 <body>
-    <h1>Invertir Texto</h1>
-    <input type="text" id="textoInput" placeholder="Escribe algo...">
-    <button onclick="invertirTexto()">Invertir</button>
-    <div id="resultado" style="margin-top: 20px; padding: 10px; border: 1px solid #ccc;"></div>
+    <div class="exercise-bg"></div>
+    
+    <header class="exercise-header">
+        <a href="../index.html" class="back-button">« Volver al Inicio</a>
+        <h1>Invertir Texto</h1>
+        <p>Escribe un texto y observa cómo se invierte</p>
+    </header>
+
+    <main class="exercise-container">
+        <section class="code-section">
+            <div class="section-header">
+                <h2><i class="icon-code"></i> Código</h2>
+            </div>
+            <pre><code class="language-javascript">function invertirTexto() {
+    const texto = document.getElementById('textoInput').value;
+    const textoInvertido = texto.split('').reverse().join('');
+    document.getElementById('resultado').textContent = textoInvertido;
+    return textoInvertido;
+}</code></pre>
+        </section>
+
+        <section class="simulation-section">
+            <div class="section-header">
+                <h2><i class="icon-play"></i> Simulación</h2>
+            </div>
+            <div class="simulation-content">
+                <input type="text" id="textoInput" placeholder="Escribe algo aquí..." class="text-input">
+                <button onclick="invertirTexto()" class="action-button">Invertir Texto</button>
+                <div class="result-display">
+                    <h3>Resultado:</h3>
+                    <div id="resultado" class="output-box"></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="exercise-footer">
+        <p>© 2025 - Edson Subia - CIT</p>
+    </footer>
 
     <script>
         function invertirTexto() {
             const texto = document.getElementById('textoInput').value;
             const textoInvertido = texto.split('').reverse().join('');
             document.getElementById('resultado').textContent = textoInvertido;
+            return textoInvertido;
         }
     </script>
 </body>
