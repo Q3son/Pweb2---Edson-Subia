@@ -1,4 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
+    const loader = document.getElementById('loader');
+    loader.style.display = 'flex';
     fetch('/data')
         .then(response => response.json())
         .then(data => {
@@ -22,5 +24,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     colors: ['#4285F4']
                 }));
             });
+        })
+        .finally(() => {
+            loader.style.display = 'none';
         });
 });

@@ -21,3 +21,8 @@ const PORT = 3000;
 app.listen(PORT, () => {
     console.log(`Servidor corriendo en http://localhost:${PORT}`);
 });
+app.get('/data', (req, res) => {
+    setTimeout(() => {
+        res.sendFile(path.join(__dirname, 'data.json'));
+    }, 1000); // Retardo de 1 segundo
+});
