@@ -1,9 +1,87 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-	<title>Hola desde Express</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laboratorio 04 - UNSA</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <script src="https://www.gstatic.com/charts/loader.js"></script>
 </head>
 <body>
-	<h1>¡Hola mundo desde index.html!</h1>
+    <header>
+        <img src="/images/logo-unsa.png" alt="Logo UNSA" class="logo">
+        <h1>Laboratorio 04 - AJAX & Google Charts</h1>
+        <div class="icons">
+            <img src="/images/js-icon.png" alt="JS">
+            <img src="/images/ajax-icon.png" alt="AJAX">
+        </div>
+    </header>
+
+    <main>
+        <!-- Ejercicio 1 -->
+        <section class="ejercicio">
+            <h2>1. Listar todas las regiones</h2>
+            <div id="regiones-list" class="chart-container"></div>
+        </section>
+
+        <!-- Ejercicio 2 -->
+        <section class="ejercicio">
+            <h2>2. Total confirmados por región</h2>
+            <div id="total-confirmados" class="chart-container"></div>
+        </section>
+
+        <!-- Ejercicio 3 -->
+        <section class="ejercicio">
+            <h2>3. Top 10 regiones con más casos</h2>
+            <div id="top10-regiones" class="chart-container"></div>
+        </section>
+
+        <!-- Ejercicio 4 -->
+        <section class="ejercicio">
+            <h2>4. Gráfico temporal: Arequipa</h2>
+            <div id="grafico-arequipa" class="chart-container"></div>
+        </section>
+
+        <!-- Ejercicio 5 -->
+        <section class="ejercicio">
+            <h2>5. Comparativo entre regiones</h2>
+            <div id="grafico-comparativo" class="chart-container"></div>
+        </section>
+
+        <!-- Ejercicio 6 -->
+        <section class="ejercicio">
+            <h2>6. Crecimiento (sin Lima y Callao)</h2>
+            <div id="grafico-sin-lima-callao" class="chart-container"></div>
+        </section>
+
+        <!-- Ejercicio 7 -->
+        <section class="ejercicio">
+            <h2>7. Comparativo de regiones seleccionadas</h2>
+            <select id="region-select" multiple class="custom-select">
+                <!-- Opciones se llenarán con JS -->
+            </select>
+            <div id="grafico-regiones-seleccionadas" class="chart-container"></div>
+        </section>
+
+        <!-- Ejercicio 8 -->
+        <section class="ejercicio">
+            <h2>8. Crecimiento diario (sin Lima y Callao)</h2>
+            <div id="grafico-crecimiento-diario" class="chart-container"></div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2023 - Edson Fabricio Subia Huaicane - UNSA</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="/js/1.js"></script>
+    <script src="/js/2.js"></script>
+    <script src="/js/3.js"></script>
+    <script src="/js/4.js"></script>
+    <script src="/js/5.js"></script>
+    <script src="/js/6.js"></script>
+    <script src="/js/7.js"></script>
+    <script src="/js/8.js"></script>
 </body>
 </html>
