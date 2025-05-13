@@ -1,3 +1,10 @@
-echo "__pycache__/" >> .gitignore
-echo "*.py[cod]" >> .gitignore
-echo "py1/" >> .gitignore  # Opcional: excluye el entorno virtual
+# Python
+__pycache__/
+*.py[cod]
+*.pyc
+*.pyo
+*.pyd
+
+# Entornos virtuales
+py1/
+.venv/
