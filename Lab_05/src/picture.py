@@ -50,3 +50,19 @@ class Picture:
     def verticalRepeat(self, n):
         """Repite la imagen verticalmente n veces"""
         return Picture(self.img * n)  # Uso de * para listas
+    
+    def overlay(self, background):
+        """Superpone esta imagen (pieza) sobre un fondo (cuadro).
+        La pieza reemplazará los espacios vacíos (' ') del fondo."""
+        # Verificar que las imágenes tienen el mismo tamaño
+        if len(self.img) != len(background.img) or len(self.img[0]) != len(background.img[0]):
+            raise ValueError("Las imágenes deben tener las mismas dimensiones")
+        
+        combined = []
+        for piece_row, bg_row in zip(self.img, background.img):
+            combined_row = ""
+            for piece_char, bg_char in zip(piece_row, bg_row):
+                # Mantener el carácter de la pieza si no es espacio vacío, sino usar el fondo
+                combined_row += piece_char if piece_char.strip() else bg_char
+            combined.append(combined_row)
+        return Picture(combined)
