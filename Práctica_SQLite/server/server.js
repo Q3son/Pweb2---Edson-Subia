@@ -5,28 +5,40 @@ const app = express();
 
 app.use(cors());
 
-// Simulamos un error de conexión a la BD (ruta incorrecta)
-const db = new sqlite3.Database('./ruta/incorrecta/imdb.db', sqlite3.OPEN_READWRITE, (err) => {
-    if (err) {
-        console.error("🔥 Error de conexión a la BD:", err.message); // Log en servidor
-    }
-});
+// Conexión a la BD con manejo real de errores
+let db;
+try {
+    db = new sqlite3.Database('../imdb.db', sqlite3.OPEN_READWRITE, (err) => {
+        if (err) {
+            console.error("🔥 Error de conexión a la BD:", err.message);
+            db = null; // Forzamos db a null si hay error
+        }
+    });
+} catch (err) {
+    console.error("🚨 Error al crear conexión a BD:", err);
+    db = null;
+}
 
 app.get('/peliculas', (req, res) => {
-    // Si la BD no está conectada, devolvemos un error controlado
     if (!db) {
         return res.status(500).json({ 
             error: "Base de datos no disponible. Revisa la conexión." 
         });
     }
 
-    db.all("SELECT title, year FROM movies LIMIT 5", [], (err, rows) => {
+    db.all("SELECT title, year FROM movie LIMIT 5", [], (err, rows) => {
         if (err) {
-            res.status(500).json({ error: err.message });
-        } else {
-            res.json(rows || []); // Devuelve array vacío si no hay datos
+            return res.status(500).json({ error: err.message });
         }
+        res.json(rows || []);
     });
+});
+
+app.get('/', (req, res) => {
+    res.send(`
+        <h1>Servidor IMDB funcionando</h1>
+        <p>Usa la ruta <a href="/peliculas">/peliculas</a> para ver los datos.</p>
+    `);
 });
 
 app.listen(3000, () => console.log('Servidor en http://localhost:3000'));

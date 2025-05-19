@@ -10,12 +10,12 @@ document.getElementById('cargar').addEventListener('click', () => {
                 contenedor.innerHTML = `<p class="error">${data.error}</p>`;
             } else {
                 contenedor.innerHTML = data.map(movie => 
-                    `<p>${movie.title} (${movie.year})</p>`
+                    `<p>${movie.Title} (${movie.Year})</p>`  // ¡Mayúsculas en Title y Year!
                 ).join('');
             }
         })
         .catch(error => {
             document.getElementById('resultados').innerHTML = 
-                `<p class="error">No se pudo conectar al servidor: ${error.message}</p>`;
+                `<p class="error">Error: ${error.message}</p>`;
         });
 });
