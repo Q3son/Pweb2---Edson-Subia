@@ -16,8 +16,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from personas import views  # Importa las vistas de tu app
 
 urlpatterns = [
-    path('admin/', admin.site.urls),  # Panel de administración
-    # path('', include('personas.urls')),  # Descomenta cuando crees urls.py en tu app
+    path('admin/', admin.site.urls),
+    path('', views.inicio, name='inicio'),  # Ruta raíz
 ]
