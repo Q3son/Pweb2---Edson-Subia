@@ -1,16 +1,25 @@
 {% extends 'educacion/base.html' %}
 
+{% block title %}Inicio - Sistema Académico{% endblock %}
+
 {% block content %}
-<div class="container text-center mt-5">
-    <h1 class="display-4">Bienvenido al Sistema Académico</h1>
-    <p class="lead">Universidad Nacional de San Agustín</p>
-    <div class="mt-4">
-        <a href="{% url 'alumno_list' %}" class="btn btn-primary btn-lg mx-2">
-            <i class="fas fa-users"></i> Alumnos
-        </a>
-        <a href="{% url 'curso_list' %}" class="btn btn-success btn-lg mx-2">
-            <i class="fas fa-book"></i> Cursos
-        </a>
+<div class="container text-center py-5">
+    <div class="row">
+        <div class="col-md-8 mx-auto">
+            <h1 class="display-4 mb-4">
+                <i class="fas fa-graduation-cap text-primary"></i> Bienvenido
+            </h1>
+            <p class="lead mb-5">Sistema de Gestión Académica - UNSA</p>
+            
+            <div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
+                <a href="{% url 'alumno_list' %}" class="btn btn-primary btn-lg px-4 gap-3">
+                    <i class="fas fa-users me-2"></i> Ver Alumnos
+                </a>
+                <a href="{% url 'curso_list' %}" class="btn btn-success btn-lg px-4">
+                    <i class="fas fa-book me-2"></i> Ver Cursos
+                </a>
+            </div>
+        </div>
     </div>
 </div>
 {% endblock %}

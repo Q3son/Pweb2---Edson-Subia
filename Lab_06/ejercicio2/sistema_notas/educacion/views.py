@@ -7,6 +7,9 @@ from django.contrib import messages  # Importar messages
 from .models import Alumno, Curso, NotaAlumnoPorCurso
 from .forms import AlumnoForm, CursoForm, NotaForm
 
+def home(request):
+    """Vista para la página de inicio"""
+    return render(request, 'educacion/home.html')
 class AlumnoListView(ListView):
     model = Alumno
     template_name = 'educacion/alumno_list.html'
