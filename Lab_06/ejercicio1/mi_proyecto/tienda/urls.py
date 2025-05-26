@@ -14,12 +14,3 @@ urlpatterns = [
     path('ventas/crear/', CrearVentaView.as_view(), name='crear_venta'),
     path('ventas/', lista_ventas, name='lista_ventas'),
 ]
-
-# mi_proyecto/urls.py
-from django.contrib import admin
-from django.urls import path, include
-
-urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', include('tienda.urls')),
-]
