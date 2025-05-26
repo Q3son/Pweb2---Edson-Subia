@@ -1,0 +1,29 @@
+{% extends 'tienda/base.html' %}
+
+{% block content %}
+<h2>Lista de Productos</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Código</th>
+            <th>Nombre</th>
+            <th>Precio</th>
+            <th>Stock</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for producto in productos %}
+        <tr>
+            <td>{{ producto.codigo }}</td>
+            <td>{{ producto.nombre }}</td>
+            <td>S/ {{ producto.precio }}</td>
+            <td>{{ producto.stock }}</td>
+            <td>
+                <a href="{% url 'detalle_producto' producto.id %}" class="btn btn-info btn-sm">Ver</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
