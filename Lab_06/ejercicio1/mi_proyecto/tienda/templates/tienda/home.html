@@ -1,0 +1,36 @@
+{% extends 'tienda/base.html' %}
+
+{% block title %}Inicio{% endblock %}
+
+{% block content %}
+<h1>Bienvenido al Sistema de Ventas</h1>
+<div class="row mt-4">
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Productos</h5>
+                <p class="card-text">Gestión de productos disponibles.</p>
+                <a href="{% url 'lista_productos' %}" class="btn btn-primary">Ver Productos</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Ventas</h5>
+                <p class="card-text">Registro y consulta de ventas.</p>
+                <a href="{% url 'lista_ventas' %}" class="btn btn-primary">Ver Ventas</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Nueva Venta</h5>
+                <p class="card-text">Registrar una nueva venta.</p>
+                <a href="{% url 'crear_venta' %}" class="btn btn-success">Crear Venta</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
