@@ -1,8 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic import (
     ListView, CreateView, UpdateView, DetailView
 )
 from django.urls import reverse_lazy
+from django.contrib import messages  # Importar messages
 from .models import Alumno, Curso, NotaAlumnoPorCurso
 from .forms import AlumnoForm, CursoForm, NotaForm
 
@@ -18,11 +19,19 @@ class AlumnoCreateView(CreateView):
     template_name = 'educacion/alumno_form.html'
     success_url = reverse_lazy('alumno_list')
 
+    def form_valid(self, form):
+        messages.success(self.request, f'Alumno {form.instance.nombre} {form.instance.apellido} creado exitosamente!')
+        return super().form_valid(form)
+
 class AlumnoUpdateView(UpdateView):
     model = Alumno
     form_class = AlumnoForm
     template_name = 'educacion/alumno_form.html'
     success_url = reverse_lazy('alumno_list')
+
+    def form_valid(self, form):
+        messages.success(self.request, f'Datos de {form.instance.nombre} {form.instance.apellido} actualizados correctamente!')
+        return super().form_valid(form)
 
 class CursoListView(ListView):
     model = Curso
@@ -34,6 +43,10 @@ class CursoCreateView(CreateView):
     form_class = CursoForm
     template_name = 'educacion/curso_form.html'
     success_url = reverse_lazy('curso_list')
+
+    def form_valid(self, form):
+        messages.success(self.request, f'Curso {form.instance.nombre} creado exitosamente!')
+        return super().form_valid(form)
 
 class NotaListView(ListView):
     model = NotaAlumnoPorCurso
@@ -48,6 +61,17 @@ class NotaCreateView(CreateView):
     form_class = NotaForm
     template_name = 'educacion/nota_form.html'
     success_url = reverse_lazy('nota_list')
+
+    def form_valid(self, form):
+        messages.success(
+            self.request,
+            f'Nota {form.instance.nota} registrada para {form.instance.alumno} en {form.instance.curso}'
+        )
+        return super().form_valid(form)
+
+    def form_invalid(self, form):
+        messages.error(self.request, 'Error al registrar la nota. Verifique los datos.')
+        return super().form_invalid(form)
 
 class ReporteNotasView(DetailView):
     model = Alumno

@@ -1,0 +1,41 @@
+{% extends 'educacion/base.html' %}
+
+{% block title %}Lista de Cursos | UNSA{% endblock %}
+
+{% block content %}
+<div class="card border-0 shadow">
+    <div class="card-header bg-primary text-white">
+        <h4 class="mb-0">
+            <i class="fas fa-book me-2"></i>Catálogo de Cursos
+        </h4>
+    </div>
+    <div class="card-body">
+        <a href="{% url 'curso_create' %}" class="btn btn-success mb-4">
+            <i class="fas fa-plus-circle me-1"></i> Nuevo Curso
+        </a>
+
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Código</th>
+                        <th>Nombre</th>
+                        <th>Créditos</th>
+                        <th>Profesor</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for curso in cursos %}
+                    <tr>
+                        <td>{{ curso.codigo }}</td>
+                        <td>{{ curso.nombre }}</td>
+                        <td>{{ curso.creditos }}</td>
+                        <td>{{ curso.profesor }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

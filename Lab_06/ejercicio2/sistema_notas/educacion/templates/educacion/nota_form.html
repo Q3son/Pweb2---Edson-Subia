@@ -1,0 +1,27 @@
+{% extends 'educacion/base.html' %}
+
+{% block title %}Registrar Nota | UNSA{% endblock %}
+
+{% block content %}
+<div class="card border-0 shadow">
+    <div class="card-header bg-primary text-white">
+        <h4 class="mb-0">
+            <i class="fas fa-edit me-2"></i>Registro de Calificación
+        </h4>
+    </div>
+    <div class="card-body">
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <button type="submit" class="btn btn-primary me-md-2">
+                    <i class="fas fa-save me-1"></i> Guardar
+                </button>
+                <a href="{% url 'nota_list' %}" class="btn btn-secondary">
+                    <i class="fas fa-times me-1"></i> Cancelar
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

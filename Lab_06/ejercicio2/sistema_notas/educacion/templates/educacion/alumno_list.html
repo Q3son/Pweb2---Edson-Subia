@@ -1,0 +1,48 @@
+{% extends 'educacion/base.html' %}
+
+{% block title %}Lista de Alumnos | UNSA{% endblock %}
+
+{% block content %}
+<div class="card border-0 shadow">
+    <div class="card-header bg-primary text-white">
+        <h4 class="mb-0">
+            <i class="fas fa-users me-2"></i>Registro de Alumnos
+        </h4>
+    </div>
+    <div class="card-body">
+        <a href="{% url 'alumno_create' %}" class="btn btn-success mb-4">
+            <i class="fas fa-plus-circle me-1"></i> Nuevo Alumno
+        </a>
+
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead class="table-dark">
+                    <tr>
+                        <th>DNI</th>
+                        <th>Apellidos</th>
+                        <th>Nombres</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for alumno in alumnos %}
+                    <tr>
+                        <td>{{ alumno.dni }}</td>
+                        <td>{{ alumno.apellido }}</td>
+                        <td>{{ alumno.nombre }}</td>
+                        <td>
+                            <a href="{% url 'alumno_update' alumno.pk %}" class="btn btn-sm btn-warning">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                            <a href="{% url 'alumno_reporte' alumno.pk %}" class="btn btn-sm btn-info">
+                                <i class="fas fa-file-alt"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
