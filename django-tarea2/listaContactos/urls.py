@@ -16,9 +16,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from personas import views  # Importa las vistas de tu app
+from inicio.views import myHomeView
+from personas.views import inicio
+
 
 urlpatterns = [
+    path('', myHomeView, name='inicio'),
     path('admin/', admin.site.urls),
-    path('', views.inicio, name='inicio'),  # Ruta raíz
 ]
