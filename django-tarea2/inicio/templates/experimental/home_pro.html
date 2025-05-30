@@ -1,0 +1,37 @@
+{% extends 'experimental/base_pro.html' %}
+
+{% block content %}
+<div class="bg-white/80 backdrop-blur-md rounded-2xl shadow-2xl p-10 max-w-4xl mx-auto my-10">
+    <h1 class="text-5xl font-bold mb-6 text-center typewriter" data-text="¡Bienvenido al Futuro!">
+    </h1>
+    
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
+        <!-- Tarjeta 1 -->
+        <div class="bg-gradient-to-br from-blue-50 to-cyan-50 p-6 rounded-xl border border-blue-200 hover:shadow-lg transition-all">
+            <div class="text-blue-600 text-4xl mb-4">
+                <i class="fas fa-bolt"></i>
+            </div>
+            <h3 class="text-xl font-bold text-gray-800 mb-2">Rendimiento</h3>
+            <p class="text-gray-600">Optimizado con Django 5.0</p>
+        </div>
+        
+        <!-- Tarjeta 2 -->
+        <div class="bg-gradient-to-br from-purple-50 to-pink-50 p-6 rounded-xl border border-purple-200 hover:shadow-lg transition-all">
+            <div class="text-purple-600 text-4xl mb-4">
+                <i class="fas fa-paint-brush"></i>
+            </div>
+            <h3 class="text-xl font-bold text-gray-800 mb-2">Diseño</h3>
+            <p class="text-gray-600">Tailwind CSS + Glassmorphism</p>
+        </div>
+        
+        <!-- Tarjeta 3 -->
+        <div class="bg-gradient-to-br from-green-50 to-emerald-50 p-6 rounded-xl border border-green-200 hover:shadow-lg transition-all">
+            <div class="text-green-600 text-4xl mb-4">
+                <i class="fas fa-code-branch"></i>
+            </div>
+            <h3 class="text-xl font-bold text-gray-800 mb-2">Código</h3>
+            <p class="text-gray-600">100% Python & Clean Architecture</p>
+        </div>
+    </div>
+</div>
+{% endblock %}
