@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}Código para Estudiantes{% endblock %}</title>
+    <style>
+        body { font-family: Arial; max-width: 800px; margin: 0 auto; }
+        header { background: #f0f0f0; padding: 20px; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Este es el texto de Base</h1>
+    </header>
+
+    <main>
+        {% block content %}
+        <!-- Contenido será reemplazado por hijos -->
+        <p>Plantilla base. Reemplázame.</p>
+        {% endblock %}
+    </main>
+
+    <footer>
+        <hr>
+        <p>© {% now "Y" %} - Proyecto Django</p>
+    </footer>
+</body>
+</html>
