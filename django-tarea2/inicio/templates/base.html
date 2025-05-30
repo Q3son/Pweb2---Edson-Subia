@@ -1,27 +1,24 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-    <title>{% block title %}Código para Estudiantes{% endblock %}</title>
-    <style>
-        body { font-family: Arial; max-width: 800px; margin: 0 auto; }
-        header { background: #f0f0f0; padding: 20px; }
-    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Django Pro{% endblock %}</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <header>
-        <h1>Este es el texto de Base</h1>
-    </header>
-
-    <main>
+    {% include 'includes/nav.html' %}
+    
+    <main class="container my-5">
         {% block content %}
-        <!-- Contenido será reemplazado por hijos -->
-        <p>Plantilla base. Reemplázame.</p>
+        <!-- Contenido de las páginas hijas -->
         {% endblock %}
     </main>
 
-    <footer>
-        <hr>
-        <p>© {% now "Y" %} - Proyecto Django</p>
-    </footer>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

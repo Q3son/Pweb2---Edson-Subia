@@ -1,14 +1,25 @@
 {% extends "base.html" %}
 
-{% block title %}Inicio | Mi Proyecto{% endblock %}
+{% block title %}Inicio 🚀{% endblock %}
 
 {% block content %}
-    <h2>¡Bienvenido!</h2>
-    <p>Este contenido reemplaza el bloque "content" de base.html</p>
+<section class="text-center py-12">
+    <h1 class="text-4xl font-bold text-blue-600 mb-6">
+        ¡Bienvenido a mi <span class="underline">Proyecto Django</span>!
+    </h1>
     
-    {% if request.user.is_authenticated %}
-        <div class="alert">
-            Logueado como: <strong>{{ request.user }}</strong>
+    <div class="bg-white p-8 rounded-xl shadow-lg max-w-2xl mx-auto">
+        <p class="text-lg mb-4">
+            Este es un ejemplo de <span class="font-mono text-purple-600">{% now "DATETIME_FORMAT" %}</span>
+        </p>
+        
+        <div class="mt-6 p-4 {% if user.is_authenticated %}bg-green-100{% else %}bg-yellow-100{% endif %} rounded-lg">
+            {% if user.is_authenticated %}
+            <p class="text-green-800">✅ Estás logueado como <strong>{{ user.username }}</strong></p>
+            {% else %}
+            <p class="text-yellow-800">🔐 <a href="/admin/" class="underline">Inicia sesión</a> para más features</p>
+            {% endif %}
         </div>
-    {% endif %}
+    </div>
+</section>
 {% endblock %}
