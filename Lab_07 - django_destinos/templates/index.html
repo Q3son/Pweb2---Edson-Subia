@@ -1,13 +1,14 @@
 {% load static %}
 {% static "images" as baseUrl %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es"> <!-- Cambiado a español -->
 
 <head>
-	<title>Travello</title>
+	<title>Viajemos Perú - Descubre los Mejores Destinos</title> <!-- Título más descriptivo -->
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="description" content="Travello template project">
+	<meta name="description" content="Descubre los destinos turísticos más increíbles de nuestro país con Viajemos Perú"> <!-- Descripción mejorada -->
+	<meta name="keywords" content="Perú, turismo, viajes, Machu Picchu, Cusco, Lima, Arequipa"> <!-- Meta keywords añadidas -->
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="{% static 'styles/bootstrap4/bootstrap.min.css' %}">
 	<link href="{% static 'plugins/font-awesome-4.7.0/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
@@ -16,6 +17,8 @@
 	<link rel="stylesheet" type="text/css" href="{% static 'plugins/OwlCarousel2-2.2.1/animate.css' %}">
 	<link rel="stylesheet" type="text/css" href="{% static 'styles/main_styles.css' %}">
 	<link rel="stylesheet" type="text/css" href="{% static 'styles/responsive.css' %}">
+	<!-- Favicon añadido -->
+	<link rel="icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
 </head>
 
 <body>
@@ -30,29 +33,29 @@
 					<div class="col">
 						<div class="header_content d-flex flex-row align-items-center justify-content-start">
 							<div class="header_content_inner d-flex flex-row align-items-end justify-content-start">
-								<div class="logo"><a href="index.html">Travello</a></div>
+								<div class="logo"><a href="index.html">Viajemos Perú</a></div> <!-- Nombre específico -->
 								<nav class="main_nav">
 									<ul class="d-flex flex-row align-items-start justify-content-start">
-										<li class="active"><a href="index.html">Home</a></li>
-										<li><a href="contact.html">Contact</a></li>
+										<li class="active"><a href="index.html">Inicio</a></li> <!-- Textos en español -->
+										<li><a href="about.html">Nosotros</a></li> <!-- Añadido -->
+										<li><a href="destinations.html">Destinos</a></li> <!-- Añadido -->
+										<li><a href="contact.html">Contacto</a></li>
 
 										{% if user.is_authenticated %}
-										<li>Hello, {{user.first_name}}</li>
-										<li><a href="accounts/logout">Logout</a></li>
+										<li>Hola, {{user.first_name}}</li>
+										<li><a href="accounts/logout">Salir</a></li>
 										{% else %}	
-										<li><a href="accounts/register">Register</a></li>
-										<li><a href="accounts/login">Login</a></li>
+										<li><a href="accounts/register">Registrarse</a></li>
+										<li><a href="accounts/login">Ingresar</a></li>
 										{% endif %}
 									</ul>
 								</nav>
-								<div class="header_phone ml-auto">Call us: 00-56 445 678 33</div>
+								<div class="header_phone ml-auto">Llámanos: +51 987 654 321</div> <!-- Número peruano -->
 
 								<!-- Hamburger -->
-
 								<div class="hamburger ml-auto">
 									<i class="fa fa-bars" aria-hidden="true"></i>
 								</div>
-
 							</div>
 						</div>
 					</div>
@@ -60,12 +63,11 @@
 			</div>
 			<div class="header_social d-flex flex-row align-items-center justify-content-start">
 				<ul class="d-flex flex-row align-items-start justify-content-start">
-					<li><a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
 					<li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+					<li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li> <!-- Instagram más relevante -->
 					<li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-					<li><a href="#"><i class="fa fa-dribbble" aria-hidden="true"></i></a></li>
-					<li><a href="#"><i class="fa fa-behance" aria-hidden="true"></i></a></li>
-					<li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+					<li><a href="#"><i class="fa fa-youtube" aria-hidden="true"></i></a></li> <!-- YouTube añadido -->
+					<li><a href="#"><i class="fa fa-whatsapp" aria-hidden="true"></i></a></li> <!-- WhatsApp añadido -->
 				</ul>
 			</div>
 		</header>
@@ -74,7 +76,7 @@
 
 		<div class="menu">
 			<div class="menu_header d-flex flex-row align-items-center justify-content-start">
-				<div class="menu_logo"><a href="index.html">Travello</a></div>
+				<div class="menu_logo"><a href="index.html">Viajemos Perú</a></div>
 				<div class="menu_close_container ml-auto">
 					<div class="menu_close">
 						<div></div>
@@ -84,22 +86,19 @@
 			</div>
 			<div class="menu_content">
 				<ul>
-					<li><a href="inex.html">Home</a></li>
-					<li><a href="about.html">About us</a></li>
-					<li><a href="#">Services</a></li>
-					<li><a href="news.html">News</a></li>
-					<li><a href="contact.html">Contact</a></li>
+					<li><a href="index.html">Inicio</a></li>
+					<li><a href="about.html">Nosotros</a></li>
+					<li><a href="destinations.html">Destinos</a></li>
+					<li><a href="contact.html">Contacto</a></li>
 				</ul>
 			</div>
 			<div class="menu_social">
-				<div class="menu_phone ml-auto">Call us: 00-56 445 678 33</div>
+				<div class="menu_phone ml-auto">Llámanos: +51 987 654 321</div>
 				<ul class="d-flex flex-row align-items-start justify-content-start">
-					<li><a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
 					<li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+					<li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
 					<li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-					<li><a href="#"><i class="fa fa-dribbble" aria-hidden="true"></i></a></li>
-					<li><a href="#"><i class="fa fa-behance" aria-hidden="true"></i></a></li>
-					<li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+					<li><a href="#"><i class="fa fa-youtube" aria-hidden="true"></i></a></li>
 				</ul>
 			</div>
 		</div>
@@ -107,22 +106,21 @@
 		<!-- Home -->
 
 		<div class="home">
-
 			<!-- Home Slider -->
 			<div class="home_slider_container">
 				<div class="owl-carousel owl-theme home_slider">
 
-					<!-- Slide -->
+					<!-- Slide 1 - Machu Picchu -->
 					<div class="owl-item">
 						<div class="background_image"
-							style="background-image:url({% static 'images/home_slider.jpg' %})"></div>
+							style="background-image:url({% static 'images/machu_picchu.jpg' %})"></div> <!-- Imagen específica -->
 						<div class="home_slider_content_container">
 							<div class="container">
 								<div class="row">
 									<div class="col">
 										<div class="home_slider_content">
 											<div class="home_title">
-												<h2>Let us take you away</h2>
+												<h2>Descubre la maravilla de Machu Picchu</h2> <!-- Texto específico -->
 											</div>
 										</div>
 									</div>
@@ -131,17 +129,17 @@
 						</div>
 					</div>
 
-					<!-- Slide -->
+					<!-- Slide 2 - Líneas de Nazca -->
 					<div class="owl-item">
 						<div class="background_image"
-							style="background-image:url({% static 'images/home_slider.jpg' %})"></div>
+							style="background-image:url({% static 'images/nazca.jpg' %})"></div>
 						<div class="home_slider_content_container">
 							<div class="container">
 								<div class="row">
 									<div class="col">
 										<div class="home_slider_content">
 											<div class="home_title">
-												<h2>Let us take you away</h2>
+												<h2>Misterio en las Líneas de Nazca</h2>
 											</div>
 										</div>
 									</div>
@@ -150,17 +148,17 @@
 						</div>
 					</div>
 
-					<!-- Slide -->
+					<!-- Slide 3 - Laguna Huacachina -->
 					<div class="owl-item">
 						<div class="background_image"
-							style="background-image:url({% static 'images/home_slider.jpg' %})"></div>
+							style="background-image:url({% static 'images/huacachina.jpg' %})"></div>
 						<div class="home_slider_content_container">
 							<div class="container">
 								<div class="row">
 									<div class="col">
 										<div class="home_slider_content">
 											<div class="home_title">
-												<h2>Let us take you away</h2>
+												<h2>Aventura en la Laguna Huacachina</h2>
 											</div>
 										</div>
 									</div>
@@ -173,9 +171,9 @@
 
 				<div class="home_page_nav">
 					<ul class="d-flex flex-column align-items-end justify-content-end">
-						<li><a href="#" data-scroll-to="#destinations">Offers<span>01</span></a></li>
-						<li><a href="#" data-scroll-to="#testimonials">Testimonials<span>02</span></a></li>
-						<li><a href="#" data-scroll-to="#news">Latest<span>03</span></a></li>
+						<li><a href="#" data-scroll-to="#destinations">Ofertas<span>01</span></a></li>
+						<li><a href="#" data-scroll-to="#testimonials">Testimonios<span>02</span></a></li>
+						<li><a href="#" data-scroll-to="#news">Noticias<span>03</span></a></li>
 					</ul>
 				</div>
 			</div>
@@ -188,20 +186,23 @@
 				<div class="row">
 					<div class="col">
 						<div class="home_search_container">
-							<div class="home_search_title">Search for your trip</div>
+							<div class="home_search_title">Busca tu viaje perfecto</div> <!-- Texto en español -->
 							<div class="home_search_content">
 								<form action="#" class="home_search_form" id="home_search_form">
 									<div
 										class="d-flex flex-lg-row flex-column align-items-start justify-content-lg-between justify-content-start">
-										<input type="text" class="search_input search_input_1" placeholder="City"
-											required="required">
-										<input type="text" class="search_input search_input_2" placeholder="Departure"
-											required="required">
-										<input type="text" class="search_input search_input_3" placeholder="Arrival"
-											required="required">
-										<input type="text" class="search_input search_input_4" placeholder="Budget"
-											required="required">
-										<button class="home_search_button">search</button>
+										<select class="search_input search_input_1" required>
+											<option value="">Destino</option>
+											<option value="machu_picchu">Machu Picchu</option>
+											<option value="cusco">Cusco</option>
+											<option value="arequipa">Arequipa</option>
+											<option value="lima">Lima</option>
+											<option value="nazca">Líneas de Nazca</option>
+										</select>
+										<input type="date" class="search_input search_input_2" placeholder="Fecha de Salida" required>
+										<input type="number" class="search_input search_input_3" placeholder="Días" min="1" required>
+										<input type="number" class="search_input search_input_4" placeholder="Presupuesto (USD)" min="100" required>
+										<button class="home_search_button">buscar</button>
 									</div>
 								</form>
 							</div>
@@ -214,7 +215,7 @@
 		<!-- Intro -->
 
 		<div class="intro">
-			<div class="intro_background" style="background-image:url({% static 'images/beach.svg' %})"></div>
+			<div class="intro_background" style="background-image:url({% static 'images/peru_map.svg' %})"></div> <!-- Imagen temática -->
 			<div class="container">
 				<div class="row">
 					<div class="col">
@@ -224,11 +225,11 @@
 								<!-- Intro Item -->
 								<div class="col-lg-4 intro_col">
 									<div class="intro_item d-flex flex-row align-items-end justify-content-start">
-										<div class="intro_icon"><img src="{% static 'images/beach.svg' %}" alt=""></div>
+										<div class="intro_icon"><img src="{% static 'images/inca_trail.svg' %}" alt=""></div> <!-- Icono temático -->
 										<div class="intro_content">
-											<div class="intro_title">Top Destinations</div>
+											<div class="intro_title">Destinos Únicos</div>
 											<div class="intro_subtitle">
-												<p>Nulla pretium tincidunt felis, nec.</p>
+												<p>Descubre lugares que solo Perú puede ofrecerte.</p> <!-- Texto mejorado -->
 											</div>
 										</div>
 									</div>
@@ -237,12 +238,11 @@
 								<!-- Intro Item -->
 								<div class="col-lg-4 intro_col">
 									<div class="intro_item d-flex flex-row align-items-end justify-content-start">
-										<div class="intro_icon"><img src="{% static 'images/wallet.svg' %}" alt="">
-										</div>
+										<div class="intro_icon"><img src="{% static 'images/price_tag.svg' %}" alt=""></div>
 										<div class="intro_content">
-											<div class="intro_title">The Best Prices</div>
+											<div class="intro_title">Los Mejores Precios</div>
 											<div class="intro_subtitle">
-												<p>Sollicitudin mauris lobortis in.</p>
+												<p>Paquetes turísticos para todos los presupuestos.</p>
 											</div>
 										</div>
 									</div>
@@ -251,12 +251,11 @@
 								<!-- Intro Item -->
 								<div class="col-lg-4 intro_col">
 									<div class="intro_item d-flex flex-row align-items-end justify-content-start">
-										<div class="intro_icon"><img src="{% static 'images/suitcase.svg' %}" alt="">
-										</div>
+										<div class="intro_icon"><img src="{% static 'images/guide.svg' %}" alt=""></div>
 										<div class="intro_content">
-											<div class="intro_title">Amazing Services</div>
+											<div class="intro_title">Guías Expertos</div>
 											<div class="intro_subtitle">
-												<p>Nulla pretium tincidunt felis, nec.</p>
+												<p>Conoce la cultura e historia con nuestros guías certificados.</p>
 											</div>
 										</div>
 									</div>
@@ -275,9 +274,9 @@
 			<div class="container">
 				<div class="row">
 					<div class="col text-center">
-						<div class="section_subtitle">simply amazing places</div>
+						<div class="section_subtitle">maravillas por descubrir</div>
 						<div class="section_title">
-							<h2>Popular Destinations</h2>
+							<h2>Destinos Populares</h2>
 						</div>
 					</div>
 				</div>
@@ -289,25 +288,27 @@
 							<!-- Destination -->
 							<div class="destination item">
 								<div class="destination_image">
-									<img src="{{dest.img.url}}" alt="">
-
+									<img src="{{dest.img.url}}" alt="{{dest.name}}">
 									{% if dest.offer %}
-									<div class="spec_offer text-center"><a href="#">Special Offer</a></div>
+									<div class="spec_offer text-center"><a href="#">Oferta Especial</a></div>
 									{% endif %}
 								</div>
 								<div class="destination_content">
-									<div class="destination_title"><a href="destinations.html">{{dest.name}}</a>
-									</div>
+									<div class="destination_title"><a href="destinations.html">{{dest.name}}</a></div>
 									<div class="destination_subtitle">
-										<p>{{dest.desc}}</p>
+										<p>{{dest.desc|truncatechars:100}}</p> <!-- Limita la descripción -->
 									</div>
-									<div class="destination_price">From ${{dest.price}}</div>
+									<div class="destination_price">Desde ${{dest.price}}</div>
 								</div>
 							</div>
-
 							{% endfor %}
 
 						</div>
+					</div>
+				</div>
+				<div class="row mt-4">
+					<div class="col text-center">
+						<a href="destinations.html" class="btn btn-primary btn-lg">Ver Todos los Destinos</a> <!-- Botón añadido -->
 					</div>
 				</div>
 			</div>
@@ -317,67 +318,51 @@
 
 		<div class="testimonials" id="testimonials">
 			<div class="parallax_background parallax-window" data-parallax="scroll"
-				data-image-src="{% static 'images/testimonials.jpg' %}" data-speed="0.8"></div>
+				data-image-src="{% static 'images/testimonials_peru.jpg' %}" data-speed="0.8"></div> <!-- Imagen temática -->
 			<div class="container">
 				<div class="row">
 					<div class="col text-center">
-						<div class="section_subtitle">simply amazing places</div>
+						<div class="section_subtitle">experiencias reales</div>
 						<div class="section_title">
-							<h2>Testimonials</h2>
+							<h2>Testimonios</h2>
 						</div>
 					</div>
 				</div>
 				<div class="row testimonials_row">
 					<div class="col">
-
 						<!-- Testimonials Slider -->
 						<div class="testimonials_slider_container">
 							<div class="owl-carousel owl-theme testimonials_slider">
 
-								<!-- Slide -->
+								<!-- Slide 1 -->
 								<div class="owl-item text-center">
-									<div class="testimonial">Lorem ipsum dolor sit amet, consectetur
-										adipiscing elit.
-										lobortis dolor. Cras placerat lectus a posuere aliquet. Curabitur
-										quis vehicula
-										odio.</div>
+									<div class="testimonial">"Machu Picchu superó todas mis expectativas. La organización del viaje fue impecable y nuestro guía conocía cada detalle de la historia inca. ¡Volveré!"</div> <!-- Testimonio real -->
 									<div class="testimonial_author">
-										<div
-											class="testimonial_author_content d-flex flex-row align-items-end justify-content-start">
-											<div>john turner,</div>
-											<div>client</div>
+										<div class="testimonial_author_content d-flex flex-row align-items-end justify-content-start">
+											<div>María González,</div>
+											<div>España</div>
 										</div>
 									</div>
 								</div>
 
-								<!-- Slide -->
+								<!-- Slide 2 -->
 								<div class="owl-item text-center">
-									<div class="testimonial">Lorem ipsum dolor sit amet, consectetur
-										adipiscing elit.
-										lobortis dolor. Cras placerat lectus a posuere aliquet. Curabitur
-										quis vehicula
-										odio.</div>
+									<div class="testimonial">"El tour por la Amazonía peruana fue una experiencia única. Vimos animales increíbles y aprendimos sobre la biodiversidad. Viajemos Perú hizo todo muy fácil."</div>
 									<div class="testimonial_author">
-										<div
-											class="testimonial_author_content d-flex flex-row align-items-end justify-content-start">
-											<div>john turner,</div>
-											<div>client</div>
+										<div class="testimonial_author_content d-flex flex-row align-items-end justify-content-start">
+											<div>John Smith,</div>
+											<div>Estados Unidos</div>
 										</div>
 									</div>
 								</div>
 
-								<!-- Slide -->
+								<!-- Slide 3 -->
 								<div class="owl-item text-center">
-									<div class="testimonial">Lorem ipsum dolor sit amet, consectetur
-										adipiscing elit.
-										lobortis dolor. Cras placerat lectus a posuere aliquet. Curabitur
-										quis vehicula
-										odio.</div>
+									<div class="testimonial">"La gastronomía peruana es increíble. Los tours culinarios en Lima fueron el punto destacado de nuestro viaje. Recomiendo totalmente esta agencia."</div>
 									<div class="testimonial_author">
-										<div
-											class="testimonial_author_content d-flex flex-row align-items-end justify-content-start">
-											<div>john turner,</div>
-											<div>client</div>
+										<div class="testimonial_author_content d-flex flex-row align-items-end justify-content-start">
+											<div>Sophie Martin,</div>
+											<div>Francia</div>
 										</div>
 									</div>
 								</div>
@@ -389,9 +374,9 @@
 			</div>
 			<div class="test_nav">
 				<ul class="d-flex flex-column align-items-end justify-content-end">
-					<li><a href="#">City Breaks Clients<span>01</span></a></li>
-					<li><a href="#">Cruises Clients<span>02</span></a></li>
-					<li><a href="#">All Inclusive Clients<span>03</span></a></li>
+					<li><a href="#">Viajeros de Aventura<span>01</span></a></li>
+					<li><a href="#">Viajeros Culturales<span>02</span></a></li>
+					<li><a href="#">Viajeros Gastronómicos<span>03</span></a></li>
 				</ul>
 			</div>
 		</div>
@@ -404,74 +389,62 @@
 					<div class="col-xl-8">
 						<div class="news_container">
 
-							<!-- News Post -->
-							<div
-								class="news_post d-flex flex-md-row flex-column align-items-start justify-content-start">
-								<div class="news_post_image"><img src="{% static 'images/news_1.jpg' %}" alt=""></div>
+							<!-- News Post 1 -->
+							<div class="news_post d-flex flex-md-row flex-column align-items-start justify-content-start">
+								<div class="news_post_image"><img src="{% static 'images/news_festival.jpg' %}" alt="Festival Inti Raymi"></div>
 								<div class="news_post_content">
 									<div class="news_post_date d-flex flex-row align-items-end justify-content-start">
-										<div>02</div>
-										<div>june</div>
+										<div>24</div>
+										<div>junio</div>
 									</div>
-									<div class="news_post_title"><a href="#">Best tips to travel light</a>
-									</div>
+									<div class="news_post_title"><a href="#">Festival Inti Raymi 2023</a></div>
 									<div class="news_post_category">
 										<ul>
-											<li><a href="#">lifestyle & travel</a></li>
+											<li><a href="#">cultura & tradición</a></li>
 										</ul>
 									</div>
 									<div class="news_post_text">
-										<p>Pellentesque sit amet elementum ccumsan sit amet mattis eget,
-											tristique at
-											leo. Vivamus massa.Tempor massa et laoreet.</p>
+										<p>El famoso Festival del Sol en Cusco regresa este año con más actividades que nunca. Una celebración única de la cultura inca que no te puedes perder.</p>
 									</div>
 								</div>
 							</div>
 
-							<!-- News Post -->
-							<div
-								class="news_post d-flex flex-md-row flex-column align-items-start justify-content-start">
-								<div class="news_post_image"><img src="{% static 'images/news_2.jpg' %}" alt=""></div>
+							<!-- News Post 2 -->
+							<div class="news_post d-flex flex-md-row flex-column align-items-start justify-content-start">
+								<div class="news_post_image"><img src="{% static 'images/news_trekking.jpg' %}" alt="Nueva ruta de trekking"></div>
 								<div class="news_post_content">
 									<div class="news_post_date d-flex flex-row align-items-end justify-content-start">
-										<div>01</div>
-										<div>june</div>
+										<div>15</div>
+										<div>junio</div>
 									</div>
-									<div class="news_post_title"><a href="#">Best tips to travel light</a>
-									</div>
+									<div class="news_post_title"><a href="#">Nueva Ruta de Trekking en los Andes</a></div>
 									<div class="news_post_category">
 										<ul>
-											<li><a href="#">lifestyle & travel</a></li>
+											<li><a href="#">aventura</a></li>
 										</ul>
 									</div>
 									<div class="news_post_text">
-										<p>Tempor massa et laoreet malesuada. Pellentesque sit amet
-											elementum ccumsan
-											sit amet mattis eget, tristique at leo.</p>
+										<p>Descubre la recién inaugurada ruta de trekking que conecta pueblos andinos con paisajes espectaculares. Perfecta para amantes del senderismo.</p>
 									</div>
 								</div>
 							</div>
 
-							<!-- News Post -->
-							<div
-								class="news_post d-flex flex-md-row flex-column align-items-start justify-content-start">
-								<div class="news_post_image"><img src="{% static 'images/news_3.jpg' %}" alt=""></div>
+							<!-- News Post 3 -->
+							<div class="news_post d-flex flex-md-row flex-column align-items-start justify-content-start">
+								<div class="news_post_image"><img src="{% static 'images/news_gastronomy.jpg' %}" alt="Premio gastronómico"></div>
 								<div class="news_post_content">
 									<div class="news_post_date d-flex flex-row align-items-end justify-content-start">
-										<div>29</div>
-										<div>may</div>
+										<div>05</div>
+										<div>junio</div>
 									</div>
-									<div class="news_post_title"><a href="#">Best tips to travel light</a>
-									</div>
+									<div class="news_post_title"><a href="#">Perú Gana Premio Gastronómico Internacional</a></div>
 									<div class="news_post_category">
 										<ul>
-											<li><a href="#">lifestyle & travel</a></li>
+											<li><a href="#">gastronomía</a></li>
 										</ul>
 									</div>
 									<div class="news_post_text">
-										<p>Vivamus massa.Tempor massa et laoreet malesuada. Aliquam nulla
-											nisl, accumsan
-											sit amet mattis.</p>
+										<p>La cocina peruana ha sido reconocida nuevamente como una de las mejores del mundo. Descubre nuestros tours culinarios exclusivos.</p>
 									</div>
 								</div>
 							</div>
@@ -481,20 +454,19 @@
 
 					<!-- News Sidebar -->
 					<div class="col-xl-4">
-						<div class="travello">
-							<div class="background_image"
-								style="background-image:url({% static 'images/travello.jpg)"></div>
-							<div class="travello_content">
-								<div class="travello_content_inner">
+						<div class="Viajemos">
+							<div class="background_image" style="background-image:url({% static 'images/peru_promo.jpg' %})"></div>
+							<div class="viajemos_content">
+								<div class="viajemos_content_inner">
 									<div></div>
 									<div></div>
 								</div>
 							</div>
-							<div class="travello_container">
+							<div class="viajemos_container">
 								<a href="#">
 									<div class="d-flex flex-column align-items-center justify-content-end">
-										<span class="travello_title">Get a 20% Discount</span>
-										<span class="travello_subtitle">Buy Your Vacation Online Now</span>
+										<span class="viajemos_title">Oferta Especial 20%</span>
+										<span class="viajemos_subtitle">Reserva tu paquete a Perú hoy mismo</span>
 									</div>
 								</a>
 							</div>
@@ -507,128 +479,119 @@
 		<!-- Footer -->
 
 		<footer class="footer">
-			<div class="parallax_background parallax-window" data-parallax="scroll" data-image-src="{% static 'images/footer_1.jpg' %}" data-speed="0.8">
+			<div class="parallax_background parallax-window" data-parallax="scroll" data-image-src="{% static 'images/footer_peru.jpg' %}" data-speed="0.8"></div>
+			<div class="container">
+				<div class="row">
+					<div class="col">
+						<div class="newsletter">
+							<div class="newsletter_title_container text-center">
+								<div class="newsletter_title">Suscríbete para recibir ofertas exclusivas</div>
+								<div class="newsletter_subtitle">¡Únete a nuestra comunidad de viajeros!</div>
 							</div>
-							<div class="container">
-								<div class="row">
-									<div class="col">
-										<div class="newsletter">
-											<div class="newsletter_title_container text-center">
-												<div class="newsletter_title">Subscribe to our newsletter to
-													get the latest
-													trends &
-													news</div>
-												<div class="newsletter_subtitle">Join our database NOW!
-												</div>
-											</div>
-											<div class="newsletter_form_container">
-												<form action="#"
-													class="newsletter_form d-flex flex-md-row flex-column align-items-start justify-content-between"
-													id="newsletter_form">
-													<div
-														class="d-flex flex-md-row flex-column align-items-start justify-content-between">
-														<div><input type="text"
-																class="newsletter_input newsletter_input_name"
-																id="newsletter_input_name" placeholder="Name"
-																required="required">
-															<div class="input_border"></div>
-														</div>
-														<div><input type="email"
-																class="newsletter_input newsletter_input_email"
-																id="newsletter_input_email" placeholder="Your e-mail"
-																required="required">
-															<div class="input_border"></div>
-														</div>
-													</div>
-													<div><button class="newsletter_button">subscribe</button>
-													</div>
-												</form>
-											</div>
+							<div class="newsletter_form_container">
+								<form action="#" class="newsletter_form d-flex flex-md-row flex-column align-items-start justify-content-between" id="newsletter_form">
+									<div class="d-flex flex-md-row flex-column align-items-start justify-content-between">
+										<div><input type="text" class="newsletter_input newsletter_input_name" id="newsletter_input_name" placeholder="Nombre" required>
+											<div class="input_border"></div>
+										</div>
+										<div><input type="email" class="newsletter_input newsletter_input_email" id="newsletter_input_email" placeholder="Tu correo" required>
+											<div class="input_border"></div>
 										</div>
 									</div>
-								</div>
-								<div class="row footer_contact_row">
-									<div class="col-xl-10 offset-xl-1">
-										<div class="row">
-
-											<!-- Footer Contact Item -->
-											<div class="col-xl-4 footer_contact_col">
-												<div
-													class="footer_contact_item d-flex flex-column align-items-center justify-content-start text-center">
-													<div class="footer_contact_icon"><img
-															src="{% static 'images/sign.svg' %}" alt="">
-													</div>
-													<div class="footer_contact_title">give us a call</div>
-													<div class="footer_contact_list">
-														<ul>
-															<li>Office Landline: +44 5567 32 664 567</li>
-															<li>Mobile: +44 5567 89 3322 332</li>
-														</ul>
-													</div>
-												</div>
-											</div>
-
-											<!-- Footer Contact Item -->
-											<div class="col-xl-4 footer_contact_col">
-												<div
-													class="footer_contact_item d-flex flex-column align-items-center justify-content-start text-center">
-													<div class="footer_contact_icon"><img
-															src="{% static 'images/trekking.svg' %}" alt="">
-													</div>
-													<div class="footer_contact_title">come & drop by</div>
-													<div class="footer_contact_list">
-														<ul style="max-width:190px">
-															<li>4124 Barnes Street, Sanford, FL 32771</li>
-														</ul>
-													</div>
-												</div>
-											</div>
-
-											<!-- Footer Contact Item -->
-											<div class="col-xl-4 footer_contact_col">
-												<div
-													class="footer_contact_item d-flex flex-column align-items-center justify-content-start text-center">
-													<div class="footer_contact_icon"><img
-															src="{% static 'images/around.svg' %}" alt="">
-													</div>
-													<div class="footer_contact_title">send us a message
-													</div>
-													<div class="footer_contact_list">
-														<ul>
-															<li>youremail@gmail.com</li>
-															<li>Office@yourbusinessname.com</li>
-														</ul>
-													</div>
-												</div>
-											</div>
-
-										</div>
-									</div>
-								</div>
+									<div><button class="newsletter_button">suscribirse</button></div>
+								</form>
 							</div>
-							<div class="col text-center">
-								<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-								Copyright &copy;
-								<script>document.write(new Date().getFullYear());</script> All rights
-								reserved | This template
-								is made
-								with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com"
-									target="_blank">Colorlib</a>
-								<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-							</div>
-							</footer>
 						</div>
+					</div>
+				</div>
+				<div class="row footer_contact_row">
+					<div class="col-xl-10 offset-xl-1">
+						<div class="row">
 
-						<script src="{% static 'js/jquery-3.2.1.min.js' %}">
-						</script>
-						<script src="{% static 'styles/bootstrap4/popper.js' %}"></script>
-						<script src="{% static 'styles/bootstrap4/bootstrap.min.js' %}"></script>
-						<script src="{% static 'plugins/OwlCarousel2-2.2.1/owl.carousel.js' %}"></script>
-						<script src="{% static 'plugins/Isotope/isotope.pkgd.min.js' %}"></script>
-						<script src="{% static 'plugins/scrollTo/jquery.scrollTo.min.js' %}"></script>
-						<script src="{% static 'plugins/easing/easing.js' %}"></script>
-						<script src="{% static 'plugins/parallax-js-master/parallax.min.js' %}"></script>
-						<script src="{% static 'js/custom.js' %}"></script>
+							<!-- Footer Contact Item -->
+							<div class="col-xl-4 footer_contact_col">
+								<div class="footer_contact_item d-flex flex-column align-items-center justify-content-start text-center">
+									<div class="footer_contact_icon"><img src="{% static 'images/phone_peru.svg' %}" alt=""></div>
+									<div class="footer_contact_title">llámanos</div>
+									<div class="footer_contact_list">
+										<ul>
+											<li>Oficina: +51 1 5162213</li>
+											<li>Móvil: +51 953 597 691</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+
+							<!-- Footer Contact Item -->
+							<div class="col-xl-4 footer_contact_col">
+								<div class="footer_contact_item d-flex flex-column align-items-center justify-content-start text-center">
+									<div class="footer_contact_icon"><img src="{% static 'images/location_peru.svg' %}" alt=""></div>
+									<div class="footer_contact_title">visítanos</div>
+									<div class="footer_contact_list">
+										<ul style="max-width:190px">
+											<li>Av. José Larco 1028, Miraflores, Lima</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+
+							<!-- Footer Contact Item -->
+							<div class="col-xl-4 footer_contact_col">
+								<div class="footer_contact_item d-flex flex-column align-items-center justify-content-start text-center">
+									<div class="footer_contact_icon"><img src="{% static 'images/mail_peru.svg' %}" alt=""></div>
+									<div class="footer_contact_title">escríbenos</div>
+									<div class="footer_contact_list">
+										<ul>
+											<li>info@viajemosperu.com</li>
+											<li>reservas@viajemosperu.com</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+				<div class="row footer_bottom_row">
+					<div class="col">
+						<div class="footer_social d-flex flex-row align-items-center justify-content-start">
+							<ul class="d-flex flex-row align-items-start justify-content-start">
+								<li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+								<li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+								<li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+								<li><a href="#"><i class="fa fa-youtube" aria-hidden="true"></i></a></li>
+							</ul>
+						</div>
+						<div class="copyright text-center">
+							<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+							Copyright &copy;<script>document.write(new Date().getFullYear());</script> Viajemos Perú | Todos los derechos reservados | Template por <a href="https://colorlib.com" target="_blank">Colorlib</a>
+							<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+						</div>
+					</div>
+				</div>
+			</div>
+		</footer>
+	</div>
+
+	<script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+	<script src="{% static 'styles/bootstrap4/popper.js' %}"></script>
+	<script src="{% static 'styles/bootstrap4/bootstrap.min.js' %}"></script>
+	<script src="{% static 'plugins/OwlCarousel2-2.2.1/owl.carousel.js' %}"></script>
+	<script src="{% static 'plugins/Isotope/isotope.pkgd.min.js' %}"></script>
+	<script src="{% static 'plugins/scrollTo/jquery.scrollTo.min.js' %}"></script>
+	<script src="{% static 'plugins/easing/easing.js' %}"></script>
+	<script src="{% static 'plugins/parallax-js-master/parallax.min.js' %}"></script>
+	<script src="{% static 'js/custom.js' %}"></script>
+	<!-- Añadido: Script para manejar el formulario de búsqueda -->
+	<script>
+		$(document).ready(function() {
+			$('#home_search_form').on('submit', function(e) {
+				e.preventDefault();
+				// Aquí puedes añadir la lógica para procesar la búsqueda
+				alert('Búsqueda realizada. Redirigiendo a resultados...');
+				// window.location.href = 'search-results.html?' + $(this).serialize();
+			});
+		});
+	</script>
 </body>
-
 </html>
