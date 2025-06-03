@@ -7,6 +7,7 @@ class DestinosTuristicos(models.Model):
     imagenCiudad = models.ImageField(upload_to='destinos/')
     precioTour = models.DecimalField(max_digits=8, decimal_places=2)
     ofertaTour = models.BooleanField(default=False)
+    views = models.PositiveIntegerField(default=0, verbose_name="Vistas")
     created_by = models.ForeignKey(User, on_delete=models.CASCADE)
     
     def __str__(self):

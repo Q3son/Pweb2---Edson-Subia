@@ -1,53 +1,110 @@
-from django.shortcuts import render
-
-# Create your views here.
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
+from django.core.paginator import Paginator
 from .models import DestinosTuristicos
 from .forms import DestinoForm
 
 def home(request):
-    destinos = DestinosTuristicos.objects.filter(ofertaTour=True)[:3]
+    """Vista principal que muestra destinos en oferta"""
+    destinos = DestinosTuristicos.objects.filter(ofertaTour=True).order_by('?')[:3]  # Aleatorios
     return render(request, 'home.html', {'destinos': destinos})
 
 @login_required
 def add_destino(request):
+    """Vista para añadir nuevos destinos turísticos"""
     if request.method == 'POST':
         form = DestinoForm(request.POST, request.FILES)
         if form.is_valid():
             destino = form.save(commit=False)
             destino.created_by = request.user
             destino.save()
+            messages.success(request, 'Destino creado exitosamente!')
             return redirect('list_destinos')
+        else:
+            messages.error(request, 'Por favor corrige los errores en el formulario.')
     else:
         form = DestinoForm()
-    return render(request, 'add_destino.html', {'form': form})
+    
+    context = {
+        'form': form,
+        'title': 'Agregar Nuevo Destino'
+    }
+    return render(request, 'destinos/add_destino.html', context)
 
 @login_required
 def list_destinos(request):
-    destinos = DestinosTuristicos.objects.all()
-    return render(request, 'list_destinos.html', {'destinos': destinos})
+    """Lista todos los destinos con paginación"""
+    destinos_list = DestinosTuristicos.objects.all().order_by('nombreCiudad')
+    
+    # Paginación (6 items por página)
+    paginator = Paginator(destinos_list, 6)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    
+    context = {
+        'page_obj': page_obj,
+        'title': 'Todos los Destinos Turísticos'
+    }
+    return render(request, 'destinos/list_destinos.html', context)
 
 @login_required
 def edit_destino(request, id):
+    """Edita un destino existente"""
     destino = get_object_or_404(DestinosTuristicos, pk=id)
+    
+    # Verificar que el usuario sea el creador o superusuario
+    if request.user != destino.created_by and not request.user.is_superuser:
+        messages.error(request, 'No tienes permiso para editar este destino.')
+        return redirect('list_destinos')
+    
     if request.method == 'POST':
         form = DestinoForm(request.POST, request.FILES, instance=destino)
         if form.is_valid():
             form.save()
+            messages.success(request, 'Destino actualizado correctamente!')
             return redirect('list_destinos')
     else:
         form = DestinoForm(instance=destino)
-    return render(request, 'edit_destino.html', {'form': form})
+    
+    context = {
+        'form': form,
+        'destino': destino,
+        'title': f'Editar {destino.nombreCiudad}'
+    }
+    return render(request, 'destinos/edit_destino.html', context)
 
 @login_required
 def delete_destino(request, id):
+    """Elimina un destino"""
     destino = get_object_or_404(DestinosTuristicos, pk=id)
+    
+    # Verificar permisos
+    if request.user != destino.created_by and not request.user.is_superuser:
+        messages.error(request, 'No tienes permiso para eliminar este destino.')
+        return redirect('list_destinos')
+    
     if request.method == 'POST':
         destino.delete()
+        messages.success(request, 'Destino eliminado correctamente.')
         return redirect('list_destinos')
-    return render(request, 'delete_destino.html', {'destino': destino})
+    
+    context = {
+        'destino': destino,
+        'title': f'Eliminar {destino.nombreCiudad}'
+    }
+    return render(request, 'destinos/delete_destino.html', context)
 
 def detail_destino(request, id):
+    """Muestra los detalles de un destino específico"""
     destino = get_object_or_404(DestinosTuristicos, pk=id)
-    return render(request, 'detail_destino.html', {'destino': destino})
+    
+    # Incrementar contador de vistas (opcional)
+    destino.views = destino.views + 1 if hasattr(destino, 'views') else 1
+    destino.save()
+    
+    context = {
+        'destino': destino,
+        'title': destino.nombreCiudad
+    }
+    return render(request, 'destinos/detail_destino.html', context)

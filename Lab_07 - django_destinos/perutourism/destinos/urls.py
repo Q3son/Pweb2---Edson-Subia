@@ -1,10 +1,19 @@
 from django.urls import path
 from . import views
 
+from django.urls import path
+from .views import (
+    DestinoListView, 
+    DestinoDetailView,
+    DestinoCreateView,
+    DestinoUpdateView,
+    DestinoDeleteView
+)
+
 urlpatterns = [
-    path('add/', views.add_destino, name='add_destino'),
-    path('list/', views.list_destinos, name='list_destinos'),
-    path('edit/<int:id>/', views.edit_destino, name='edit_destino'),
-    path('delete/<int:id>/', views.delete_destino, name='delete_destino'),
-    path('detail/<int:id>/', views.detail_destino, name='detail_destino'),
+    path('', DestinoListView.as_view(), name='list_destinos'),
+    path('add/', DestinoCreateView.as_view(), name='add_destino'),
+    path('<int:pk>/', DestinoDetailView.as_view(), name='detail_destino'),
+    path('<int:pk>/edit/', DestinoUpdateView.as_view(), name='edit_destino'),
+    path('<int:pk>/delete/', DestinoDeleteView.as_view(), name='delete_destino'),
 ]
