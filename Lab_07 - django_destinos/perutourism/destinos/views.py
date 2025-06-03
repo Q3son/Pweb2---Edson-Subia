@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.core.paginator import Paginator
+from django.db.models import Q
 from .models import DestinosTuristicos
 from .forms import DestinoForm
 
@@ -61,16 +62,53 @@ def add_destino(request):
 
 @login_required
 def list_destinos(request):
-    """Lista todos los destinos con paginación"""
-    destinos_list = DestinosTuristicos.objects.all().order_by('nombreCiudad')
+    destinos_queryset = DestinosTuristicos.objects.all().order_by('nombreCiudad') # Empezamos con todos
 
-    paginator = Paginator(destinos_list, 6)
+    # 1. Obtener parámetros de búsqueda y filtro desde la URL (GET request)
+    query = request.GET.get('q')
+    mostrar_solo_ofertas = request.GET.get('ofertas') == 'on' # Será True si el checkbox estaba marcado
+
+    # 2. Aplicar filtro de búsqueda por nombre si 'q' tiene un valor
+    if query:
+        # Búsqueda insensible a mayúsculas/minúsculas en nombreCiudad o descripcionCiudad
+        destinos_queryset = destinos_queryset.filter(
+            Q(nombreCiudad__icontains=query) | 
+            Q(descripcionCiudad__icontains=query) # Opcional: buscar también en descripción
+        )
+        # Si quieres buscar en más campos, añade más Q objects con |
+
+    # 3. Aplicar filtro de ofertas si el checkbox estaba marcado
+    if mostrar_solo_ofertas:
+        destinos_queryset = destinos_queryset.filter(ofertaTour=True)
+
+    # --- (El resto de tu lógica de paginación sigue igual, pero usando destinos_queryset) ---
+    if not destinos_queryset.exists() and (query or mostrar_solo_ofertas):
+         messages.warning(request, "No se encontraron destinos que coincidan con tus criterios de búsqueda/filtro.")
+    elif not destinos_queryset.exists():
+         # Este mensaje ya lo tenías o uno similar
+         pass # El {% empty %} de la plantilla se encargará
+
+    paginator = Paginator(destinos_queryset, 6) # Paginamos el queryset filtrado
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
+    # Para mantener los parámetros de búsqueda/filtro en los enlaces de paginación
+    # Construimos una cadena de query string para añadir a los enlaces de paginación
+    query_params = request.GET.copy()
+    if 'page' in query_params:
+        del query_params['page'] # Quitamos el parámetro 'page' actual para no duplicarlo
+    
+    # Si query_params tiene algo, lo convertimos a string, si no, es una cadena vacía
+    # Esto es para que los enlaces de paginación sean como "?page=2&q=cusco&ofertas=on"
+    pagination_query_string = query_params.urlencode()
+
+
     context = {
         'page_obj': page_obj,
-        'title': 'Todos los Destinos Turísticos'
+        'title': 'Todos los Destinos Turísticos',
+        'current_query': query, # Para mostrarlo en el input si quieres
+        'current_ofertas_filter': mostrar_solo_ofertas, # Para el estado del checkbox
+        'pagination_query_string': pagination_query_string, # Para la paginación
     }
     return render(request, 'destinos/list_destinos.html', context)
 
