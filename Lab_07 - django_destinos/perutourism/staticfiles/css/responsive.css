@@ -1,0 +1,25 @@
+/* Tablets */
+@media (max-width: 992px) {
+    .hero-section {
+        height: 60vh;
+    }
+    
+    .destination-card {
+        margin-bottom: 20px;
+    }
+}
+
+/* Móviles */
+@media (max-width: 576px) {
+    .hero-section {
+        height: 50vh;
+    }
+    
+    .navbar-brand {
+        font-size: 1.2rem;
+    }
+    
+    .display-3 {
+        font-size: 2.5rem;
+    }
+}
