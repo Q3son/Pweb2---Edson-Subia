@@ -1,0 +1,145 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container py-5">
+    <!-- Header con título y botón de añadir -->
+    <div class="d-flex justify-content-between align-items-center mb-5">
+        <div>
+            <h1 class="display-4">Destinos Turísticos del Perú</h1>
+            <p class="lead text-muted">Descubre los lugares más increíbles de nuestro país</p>
+        </div>
+        {% if user.is_authenticated %}
+            <a href="{% url 'add_destino' %}" class="btn btn-primary btn-lg">
+                <i class="fas fa-plus me-2"></i>Añadir Destino
+            </a>
+        {% endif %}
+    </div>
+
+    <!-- Filtros y búsqueda -->
+    <div class="card mb-4 shadow-sm">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Buscar destino...">
+                        <button class="btn btn-outline-secondary" type="button">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-check form-switch float-end">
+                        <input class="form-check-input" type="checkbox" id="filterOfertas">
+                        <label class="form-check-label" for="filterOfertas">Mostrar solo ofertas</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Listado de destinos -->
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+        {% for destino in destinos %}
+        <div class="col">
+            <div class="card h-100 destination-card shadow-sm">
+                <!-- Badge de oferta -->
+                {% if destino.ofertaTour %}
+                <div class="position-absolute top-0 end-0 m-2">
+                    <span class="badge bg-danger">OFERTA ESPECIAL</span>
+                </div>
+                {% endif %}
+
+                <!-- Imagen del destino -->
+                <img src="{{ destino.imagenCiudad.url }}" class="card-img-top" alt="{{ destino.nombreCiudad }}" style="height: 200px; object-fit: cover;">
+
+                <div class="card-body">
+                    <!-- Nombre y descripción -->
+                    <h5 class="card-title">{{ destino.nombreCiudad }}</h5>
+                    <p class="card-text text-muted">{{ destino.descripcionCiudad|truncatewords:20 }}</p>
+                    
+                    <!-- Precio y rating -->
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <div>
+                            <span class="h4 text-primary">S/ {{ destino.precioTour }}</span>
+                            <small class="text-muted d-block">por persona</small>
+                        </div>
+                        <div>
+                            <span class="text-warning">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Botones de acción -->
+                    <div class="d-grid gap-2">
+                        <a href="{% url 'detail_destino' destino.id %}" class="btn btn-outline-primary">
+                            <i class="fas fa-eye me-2"></i>Ver Detalles
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Footer con acciones CRUD (solo para creador o admin) -->
+                {% if user.is_authenticated and user == destino.created_by %}
+                <div class="card-footer bg-transparent">
+                    <div class="d-flex justify-content-end">
+                        <a href="{% url 'edit_destino' destino.id %}" class="btn btn-sm btn-outline-secondary me-2" title="Editar">
+                            <i class="fas fa-edit"></i>
+                        </a>
+                        <a href="{% url 'delete_destino' destino.id %}" class="btn btn-sm btn-outline-danger" title="Eliminar">
+                            <i class="fas fa-trash"></i>
+                        </a>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-12">
+            <div class="alert alert-info text-center">
+                <h4 class="alert-heading">No hay destinos disponibles</h4>
+                <p>Parece que aún no se han agregado destinos turísticos.</p>
+                {% if user.is_authenticated %}
+                <a href="{% url 'add_destino' %}" class="btn btn-primary">Agregar Primer Destino</a>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Paginación -->
+    {% if destinos.paginator.num_pages > 1 %}
+    <nav class="mt-5">
+        <ul class="pagination justify-content-center">
+            {% if destinos.has_previous %}
+            <li class="page-item">
+                <a class="page-link" href="?page=1">&laquo; Primera</a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" href="?page={{ destinos.previous_page_number }}">Anterior</a>
+            </li>
+            {% endif %}
+
+            <li class="page-item disabled">
+                <span class="page-link">
+                    Página {{ destinos.number }} de {{ destinos.paginator.num_pages }}
+                </span>
+            </li>
+
+            {% if destinos.has_next %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ destinos.next_page_number }}">Siguiente</a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" href="?page={{ destinos.paginator.num_pages }}">Última &raquo;</a>
+            </li>
+            {% endif %}
+        </ul>
+    </nav>
+    {% endif %}
+</div>
+{% endblock %}
