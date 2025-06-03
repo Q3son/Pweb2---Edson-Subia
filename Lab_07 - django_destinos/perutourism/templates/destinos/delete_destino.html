@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow">
+                <div class="card-header bg-danger text-white">
+                    <h3 class="mb-0">Eliminar Destino</h3>
+                </div>
+                <div class="card-body">
+                    <p class="lead">¿Estás seguro que deseas eliminar el destino <strong>"{{ destino.nombreCiudad }}"</strong>?</p>
+                    <p>Esta acción no se puede deshacer.</p>
+                    
+                    <div class="card mb-3">
+                        <img src="{{ destino.imagenCiudad.url }}" class="card-img-top" alt="{{ destino.nombreCiudad }}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ destino.nombreCiudad }}</h5>
+                            <p class="card-text">{{ destino.descripcionCiudad|truncatewords:15 }}</p>
+                        </div>
+                    </div>
+                    
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <a href="{% url 'list_destinos' %}" class="btn btn-secondary me-md-2">Cancelar</a>
+                            <button type="submit" class="btn btn-danger">Confirmar Eliminación</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
