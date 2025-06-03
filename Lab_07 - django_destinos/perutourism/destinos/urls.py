@@ -1,19 +1,18 @@
 from django.urls import path
-from . import views
-
-from django.urls import path
+from . import views  # Importa tus vistas locales
 from .views import (
-    DestinoListView, 
-    DestinoDetailView,
-    DestinoCreateView,
-    DestinoUpdateView,
-    DestinoDeleteView
+    home,
+    add_destino,
+    list_destinos,
+    edit_destino,
+    delete_destino,
+    detail_destino
 )
 
 urlpatterns = [
-    path('', DestinoListView.as_view(), name='list_destinos'),
-    path('add/', DestinoCreateView.as_view(), name='add_destino'),
-    path('<int:pk>/', DestinoDetailView.as_view(), name='detail_destino'),
-    path('<int:pk>/edit/', DestinoUpdateView.as_view(), name='edit_destino'),
-    path('<int:pk>/delete/', DestinoDeleteView.as_view(), name='delete_destino'),
+    path('', list_destinos, name='list_destinos'),
+    path('add/', add_destino, name='add_destino'),
+    path('<int:id>/', detail_destino, name='detail_destino'),
+    path('<int:id>/edit/', edit_destino, name='edit_destino'),
+    path('<int:id>/delete/', delete_destino, name='delete_destino'),
 ]

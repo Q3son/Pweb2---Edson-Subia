@@ -96,15 +96,5 @@ def delete_destino(request, id):
     return render(request, 'destinos/delete_destino.html', context)
 
 def detail_destino(request, id):
-    """Muestra los detalles de un destino específico"""
     destino = get_object_or_404(DestinosTuristicos, pk=id)
-    
-    # Incrementar contador de vistas (opcional)
-    destino.views = destino.views + 1 if hasattr(destino, 'views') else 1
-    destino.save()
-    
-    context = {
-        'destino': destino,
-        'title': destino.nombreCiudad
-    }
-    return render(request, 'destinos/detail_destino.html', context)
+    return render(request, 'destinos/detail_destino.html', {'destino': destino})
