@@ -10,7 +10,7 @@
             <p class="lead text-muted">Descubre los lugares más increíbles de nuestro país</p>
         </div>
         {% if user.is_authenticated %}
-            <a href="{% url 'add_destino' %}" class="btn btn-primary btn-lg">
+            <a href="{% url 'destinos:add_destino' %}" class="btn btn-primary btn-lg">
                 <i class="fas fa-plus me-2"></i>Añadir Destino
             </a>
         {% endif %}
@@ -104,7 +104,7 @@
                 <h4 class="alert-heading">No hay destinos disponibles</h4>
                 <p>Parece que aún no se han agregado destinos turísticos.</p>
                 {% if user.is_authenticated %}
-                <a href="{% url 'add_destino' %}" class="btn btn-primary">Agregar Primer Destino</a>
+                <a href="{% url 'destinos:add_destino' %}" class="btn btn-primary">Agregar Primer Destino</a>
                 {% endif %}
             </div>
         </div>

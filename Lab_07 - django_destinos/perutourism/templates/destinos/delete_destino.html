@@ -23,7 +23,7 @@
                     <form method="post">
                         {% csrf_token %}
                         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                            <a href="{% url 'list_destinos' %}" class="btn btn-secondary me-md-2">Cancelar</a>
+                            <a href="{% url 'destinos:list_destinos' %}" class="btn btn-secondary me-md-2">Cancelar</a>
                             <button type="submit" class="btn btn-danger">Confirmar Eliminación</button>
                         </div>
                     </form>

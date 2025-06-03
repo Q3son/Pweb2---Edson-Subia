@@ -1,5 +1,6 @@
 from django.urls import path
 from . import views  # Importa tus vistas locales
+app_name = 'destinos'
 from .views import (
     home,
     add_destino,
@@ -10,9 +11,9 @@ from .views import (
 )
 
 urlpatterns = [
-    path('', list_destinos, name='list_destinos'),
-    path('add/', add_destino, name='add_destino'),
-    path('<int:id>/', detail_destino, name='detail_destino'),
-    path('<int:id>/edit/', edit_destino, name='edit_destino'),
-    path('<int:id>/delete/', delete_destino, name='delete_destino'),
+    path('list/', views.list_destinos, name='list_destinos'), # Será accesible como /destinos/list/
+    path('add/', views.add_destino, name='add_destino'),       # Será accesible como /destinos/add/
+    path('<int:id>/', views.detail_destino, name='detail_destino'), # /destinos/1/
+    path('<int:id>/edit/', views.edit_destino, name='edit_destino'), # /destinos/1/edit/
+    path('<int:id>/delete/', views.delete_destino, name='delete_destino'), # /destinos/1/delete/
 ]

@@ -18,11 +18,15 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
-from destinos import views
+from destinos import views as destinos_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.home, name='home'),
+    path('', destinos_views.home, name='home'),
     path('destinos/', include('destinos.urls')),
+    path('accounts/register/', destinos_views.register_view, name='register'),
+    path('accounts/logout/', destinos_views.logout_view, name='logout'),
     path('accounts/', include('django.contrib.auth.urls')),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_URL)
+] 
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

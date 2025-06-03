@@ -14,7 +14,7 @@
                         {% csrf_token %}
                         {{ form|crispy }}
                         <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4">
-                            <a href="{% url 'list_destinos' %}" class="btn btn-secondary me-md-2">Cancelar</a>
+                            <a href="{% url 'destinos:list_destinos' %}" class="btn btn-secondary me-md-2">Cancelar</a>
                             <button type="submit" class="btn btn-primary">Actualizar Destino</button>
                         </div>
                     </form>
