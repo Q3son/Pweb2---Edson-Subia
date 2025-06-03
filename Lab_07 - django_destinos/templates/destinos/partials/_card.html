@@ -1,0 +1,27 @@
+<div class="destination item">
+    <div class="destination_image">
+        <img src="{{ destino.imagenCiudad.url }}" alt="{{ destino.nombreCiudad }}">
+        {% if destino.ofertaTour %}
+        <div class="spec_offer text-center"><a href="#">¡Oferta!</a></div>
+        {% endif %}
+    </div>
+    <div class="destination_content">
+        <h3>{{ destino.nombreCiudad }}</h3>
+        <p>{{ destino.descripcionCiudad|truncatechars:100 }}</p>
+        <div class="destination_price">${{ destino.precioTour }}</div>
+        
+        <div class="mt-3">
+            <a href="{% url 'detalle_destino' destino.id %}" class="btn btn-sm btn-primary">
+                Ver más
+            </a>
+            {% if user.is_authenticated %}
+            <a href="{% url 'editar_destino' destino.id %}" class="btn btn-sm btn-warning">
+                <i class="fa fa-edit"></i>
+            </a>
+            <a href="{% url 'eliminar_destino' destino.id %}" class="btn btn-sm btn-danger">
+                <i class="fa fa-trash"></i>
+            </a>
+            {% endif %}
+        </div>
+    </div>
+</div>
