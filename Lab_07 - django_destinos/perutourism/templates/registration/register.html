@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow">
+                <div class="card-body p-5">
+                    <h2 class="card-title text-center mb-4">Registro de Usuario</h2>
+                    <form method="post">
+                        {% csrf_token %}
+                        
+                        {% if form.errors %}
+                            <div class="alert alert-danger">
+                                {% for field, errors in form.errors.items %}
+                                    {% for error in errors %}
+                                        <p>{{ error }}</p>
+                                    {% endfor %}
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                        
+                        <div class="mb-3">
+                            <label for="username" class="form-label">Nombre de usuario</label>
+                            <input type="text" class="form-control" id="username" name="username" required>
+                            <small class="text-muted">Requerido. 150 caracteres o menos. Letras, dígitos y @/./+/-/_ solamente.</small>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="password1" class="form-label">Contraseña</label>
+                            <input type="password" class="form-control" id="password1" name="password1" required>
+                            <small class="text-muted">
+                                <ul>
+                                    <li>No puede ser similar a tu otra información personal.</li>
+                                    <li>Debe contener al menos 8 caracteres.</li>
+                                    <li>No puede ser una contraseña común.</li>
+                                    <li>No puede ser enteramente numérica.</li>
+                                </ul>
+                            </small>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="password2" class="form-label">Confirmación de contraseña</label>
+                            <input type="password" class="form-control" id="password2" name="password2" required>
+                            <small class="text-muted">Ingresa la misma contraseña que antes, para verificación.</small>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary w-100">Registrarse</button>
+                    </form>
+                    <div class="text-center mt-3">
+                        <p>¿Ya tienes una cuenta? <a href="{% url 'login' %}">Inicia sesión aquí</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
