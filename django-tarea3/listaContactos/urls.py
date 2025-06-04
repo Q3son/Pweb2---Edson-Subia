@@ -21,7 +21,7 @@ from personas.views import inicio
 from django.views.generic import TemplateView
 
 
-urlpatterns = [
+urlpatterns = [ 
     path('', myHomeView, name='inicio'),
     path('another/', anotherView, name='otra-pagina'),
     path('pro/', TemplateView.as_view(template_name='experimental/home_pro.html')),
