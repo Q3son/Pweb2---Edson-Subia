@@ -13,7 +13,7 @@
             Este es un ejemplo de <span class="font-mono text-purple-600">{% now "DATETIME_FORMAT" %}</span>
         </p>
         <p>
-            {{myText|upper|truncatechars: '10'}}, 
+            {{ myText|upper|slice:":7" }}, 
             {{myNumber}}
         </p>
         <ul>

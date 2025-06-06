@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{%block content%}
+<h1> {{nombre}}</h1>
+<h2>
+    {% if edad > 40 %}
+    Usted debe cuidarse del colesterol (baje el consumo de grasas y procesados)
+    {% else %}
+    Siga alimentándose saludablemente
+    {% endif %}
+</h2>
+{% endblock %}
