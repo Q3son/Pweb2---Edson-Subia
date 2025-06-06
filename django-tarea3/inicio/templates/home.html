@@ -16,6 +16,11 @@
             {{myText}}, 
             {{myNumber}}
         </p>
+        <ul>
+            {% for myItem in myList %}
+                <li>{{ myItem }}</li>
+            {% endfor %}
+        </ul>
         <div class="mt-6 p-4 {% if user.is_authenticated %}bg-green-100{% else %}bg-yellow-100{% endif %} rounded-lg">
             {% if user.is_authenticated %}
             <p class="text-green-800">✅ Estás logueado como <strong>{{ user.username }}</strong></p>
