@@ -25,6 +25,6 @@ urlpatterns = [
     path('', myHomeView, name='inicio'),
     path('another/', anotherView, name='otra-pagina'),
     path('pro/', TemplateView.as_view(template_name='experimental/home_pro.html')),
-    path("persona/", personaTestView, name="test-persona"),
+    path('persona/', personaTestView, name="test-persona"),
     path('admin/', admin.site.urls),
 ]
