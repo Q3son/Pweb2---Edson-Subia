@@ -13,14 +13,16 @@
             Este es un ejemplo de <span class="font-mono text-purple-600">{% now "DATETIME_FORMAT" %}</span>
         </p>
         <p>
-            {{myText}}, 
+            {{myText|upper|truncatechars: '10'}}, 
             {{myNumber}}
         </p>
         <ul>
             {% for myItem in myList %}
-                <li>{{forloop.counter}} - {{ myItem }}
+                <li>{{forloop.counter}} - {{ myItem|add:10 }}
                     {% if myItem <= 44544 %}
                         - El número es menor e igual que 44544
+                    {% elif myItem|divisibleby:3 %}
+                        - Este número es múltiplo de 3
                     {% endif %}
                 </li>
             {% endfor %}
