@@ -17,7 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from inicio.views import myHomeView, anotherView
-from personas.views import inicio
+from personas.views import inicio, personaTestView
 from django.views.generic import TemplateView
 
 
@@ -25,5 +25,6 @@ urlpatterns = [
     path('', myHomeView, name='inicio'),
     path('another/', anotherView, name='otra-pagina'),
     path('pro/', TemplateView.as_view(template_name='experimental/home_pro.html')),
+    path("persona/", personaTestView, name="test-persona"),
     path('admin/', admin.site.urls),
 ]
