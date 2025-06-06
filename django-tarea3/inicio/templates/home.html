@@ -18,7 +18,11 @@
         </p>
         <ul>
             {% for myItem in myList %}
-                <li>{{forloop.counter}} - {{ myItem }}</li>
+                <li>{{forloop.counter}} - {{ myItem }}
+                    {% if myItem <= 44544 %}
+                        - El número es menor e igual que 44544
+                    {% endif %}
+                </li>
             {% endfor %}
         </ul>
         <div class="mt-6 p-4 {% if user.is_authenticated %}bg-green-100{% else %}bg-yellow-100{% endif %} rounded-lg">
