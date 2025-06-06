@@ -12,7 +12,10 @@
         <p class="text-lg mb-4">
             Este es un ejemplo de <span class="font-mono text-purple-600">{% now "DATETIME_FORMAT" %}</span>
         </p>
-        
+        <p>
+            {{myText}}, 
+            {{myNumber}}
+        </p>
         <div class="mt-6 p-4 {% if user.is_authenticated %}bg-green-100{% else %}bg-yellow-100{% endif %} rounded-lg">
             {% if user.is_authenticated %}
             <p class="text-green-800">✅ Estás logueado como <strong>{{ user.username }}</strong></p>
