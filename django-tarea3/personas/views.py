@@ -7,10 +7,10 @@ def personaTestView(request):
     obj = Persona.objects.get(id = 1)
     obj2 = Persona.objects.get(id = 2)
     context = {
-        'nombre': obj.nombres,
-        'edad': obj.edad,
-        'objeto2': obj2, 
+        'nombre': obj.nombre,
+        'edad': obj.edad, 
+        'objeto2': obj2,
     }
-    return render (request, 'personas/test.html', context)
+    return render (request, 'personas/descripcion.html', context)
 def inicio(request):
     return HttpResponse("¡Bienvenido a mi app de contactos!")
