@@ -26,4 +26,4 @@ def render_to_pdf(template_path: str, context: dict = {}):
         return None
 
     # Si todo va bien, devolvemos el HttpResponse con el tipo de contenido correcto
-    return HttpResponse(result.getvalue(), content_type='application/pdf')
+    return result
