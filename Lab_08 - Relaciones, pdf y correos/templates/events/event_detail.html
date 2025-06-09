@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ event.name }} - Detalle del Evento{% endblock %}
+
+{% block content %}
+  <div class="card">
+    <div class="card-header">
+      <h2>{{ event.name }}</h2>
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">En: {{ event.venue.name }}</h5>
+      <p class="card-text"><strong>Fecha:</strong> {{ event.event_date|date:"l, d F Y, P" }}</p>
+      <p class="card-text"><strong>Dirección:</strong> {{ event.venue.address }}</p>
+      <p class="card-text"><strong>Descripción:</strong> {{ event.description|default:"No hay descripción disponible." }}</p>
+      
+      <hr>
+      
+      <h4>Asistentes Registrados ({{ event.attendees.count }})</h4>
+      {% if event.attendees.all %}
+        <ul class="list-group list-group-flush">
+          {% for user in event.attendees.all %}
+            <li class="list-group-item">{{ user.first_name }} {{ user.last_name }} ({{ user.username }})</li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <p>Aún no hay asistentes registrados.</p>
+      {% endif %}
+    </div>
+    <div class="card-footer text-muted">
+      <!-- Botones de Acción -->
+        <a href="{% url 'ticket-pdf' event.id %}" class="btn btn-primary" target="_blank">Ver Ticket (PDF)</a>
+        <a href="{% url 'ticket-pdf-download' event.id %}" class="btn btn-success">Descargar Ticket (PDF)</a>
+        <a href="{% url 'send-email' event.id %}" class="btn btn-info">Enviar Confirmación por Correo</a>
+    </div>
+  </div>
+
+  <div class="mt-3">
+    <a href="{% url 'home' %}" class="btn btn-secondary">← Volver a la lista de eventos</a>
+  </div>
+{% endblock %}

@@ -134,3 +134,7 @@ EMAIL_USE_TLS = True # Para una conexión segura
 EMAIL_HOST_USER = config('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD') 
 DEFAULT_FROM_EMAIL = 'El Equipo de MyClub <noreply@myclub.com>'
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
