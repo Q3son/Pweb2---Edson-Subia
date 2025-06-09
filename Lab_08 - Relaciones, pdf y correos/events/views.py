@@ -3,6 +3,7 @@ from django.shortcuts import render
 from django.core.mail import EmailMessage
 from django.shortcuts import get_object_or_404
 from .models import Event
+from django.conf import settings
 from .utils import render_to_pdf # Importamos nuestra función de utilidad
 
 def generate_ticket_pdf(request, event_id):
@@ -41,15 +42,13 @@ def generate_ticket_pdf(request, event_id):
         email = EmailMessage(
             subject,
             body,
-            'noreply@myclub.com',  # Correo del remitente (puede ser cualquiera en desarrollo)
-            [request.user.email], # Lista de correos de los destinatarios
+            settings.EMAIL_HOST_USER,
+            ['esubiahu@unsa.edu.pe'], # Lista de correos de los destinatarios
         )
         
         # Adjuntamos el PDF
         filename = f"ticket_{event.id}_{request.user.username}.pdf"
         email.attach(filename, pdf_content, 'application/pdf')
-        
-        # Enviamos el correo (se imprimirá en la consola gracias a nuestra configuración)
         email.send()
 
     except Exception as e:
