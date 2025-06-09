@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Ticket para {{ event.name }}</title>
+    <style>
+        /* Los estilos CSS deben ir aquí adentro. xhtml2pdf tiene soporte limitado
+           para CSS externo, así que ponerlos aquí es más seguro. */
+        body {
+            font-family: "Helvetica", sans-serif;
+            color: #333;
+        }
+        .ticket-header {
+            text-align: center;
+            background-color: #f2f2f2;
+            padding: 20px;
+            border-bottom: 2px solid #ddd;
+        }
+        .ticket-title {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .ticket-details {
+            padding: 20px;
+        }
+        .detail-item {
+            margin-bottom: 10px;
+        }
+        .detail-label {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="ticket-header">
+        <div class="ticket-title">Ticket de Evento</div>
+    </div>
+    <div class="ticket-details">
+        <h1>{{ event.name }}</h1>
+        <div class="detail-item">
+            <span class="detail-label">Fecha:</span> {{ event.event_date|date:"d M Y, H:i" }}
+        </div>
+        <div class="detail-item">
+            <span class="detail-label">Lugar:</span> {{ event.venue.name }} ({{ event.venue.address }})
+        </div>
+        <div class="detail-item">
+            <span class="detail-label">Asistente:</span> {{ user.first_name }} {{ user.last_name }} ({{ user.username }})
+        </div>
+        <hr>
+        <p>Gracias por registrarte. ¡Disfruta el evento!</p>
+    </div>
+</body>
+</html>
