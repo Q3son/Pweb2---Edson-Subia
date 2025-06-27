@@ -4,7 +4,7 @@ class Persona(models.Model):
     nombre = models.CharField(max_length=100)
     apellidos = models.CharField(max_length=100)
     edad = models.IntegerField(blank = True)#Max digits 3
-    donador = models.BooleanField()
+    donador = models.BooleanField(default=False)
     
     class Meta:
         verbose_name = "Persona"

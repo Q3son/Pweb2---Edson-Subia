@@ -1,6 +1,7 @@
 # personas/views.py
 from django.shortcuts import render
 from .models import Persona 
+from .forms import PersonaForm
 from django.http import HttpResponse
 
 def personaTestView(request):
@@ -12,5 +13,18 @@ def personaTestView(request):
         'objeto2': obj2,
     }
     return render (request, 'personas/descripcion.html', context)
+def personaCreateView(request):
+    form = PersonaForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+        form = PersonaForm()
+    context = {
+        'form': form
+    }
+    return render(request, 'personas/personasCreate.html', context)
+
+def searchForHelp(request):
+    return render(request, 'personas/search.html', {})
+
 def inicio(request):
     return HttpResponse("¡Bienvenido a mi app de contactos!")

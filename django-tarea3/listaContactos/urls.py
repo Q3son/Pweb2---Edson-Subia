@@ -17,14 +17,16 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from inicio.views import myHomeView, anotherView
-from personas.views import inicio, personaTestView
+from personas.views import inicio, personaTestView, personaCreateView, searchForHelp
 from django.views.generic import TemplateView
 
 
-urlpatterns = [ 
+urlpatterns = [
+    path('admin/', admin.site.urls), 
     path('', myHomeView, name='inicio'),
     path('another/', anotherView, name='otra-pagina'),
     path('pro/', TemplateView.as_view(template_name='experimental/home_pro.html')),
-    path('persona/', personaTestView, name="test-persona"),
-    path('admin/', admin.site.urls),
+    path('persona/', personaTestView, name="testViewPersona"),
+    path('agregar/', personaCreateView, name= 'createPersona'),
+    path('search/', searchForHelp, name='buscar'),
 ]
