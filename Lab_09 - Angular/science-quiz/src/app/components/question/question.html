@@ -1,1 +1,26 @@
-<p>question works!</p>
+@if (currentQuestion()) {
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Pregunta {{ quizService.currentQuestionIndex() + 1 }} / {{ quizService.questions().length }}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <h3>{{ currentQuestion()!.question }}</h3>
+
+      <mat-radio-group class="options-container" [(ngModel)]="selectedOption">
+        @for (option of currentQuestion()!.options; track option) {
+          <mat-radio-button class="option" [value]="option">{{ option }}</mat-radio-button>
+        }
+      </mat-radio-group>
+
+    </mat-card-content>
+    <mat-card-actions>
+      @if (isLastQuestion()) {
+        <button mat-raised-button color="accent" [disabled]="!selectedOption" (click)="submitAnswer()">Finalizar Quiz</button>
+      } @else {
+        <button mat-raised-button color="primary" [disabled]="!selectedOption" (click)="submitAnswer()">Siguiente Pregunta</button>
+      }
+    </mat-card-actions>
+  </mat-card>
+} @else {
+  <p>Cargando pregunta...</p>
+}
