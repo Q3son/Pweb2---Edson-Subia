@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { Router, RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 import { QuizService } from '../../services/quiz.service';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
@@ -10,7 +10,7 @@ import { CommonModule } from '@angular/common'; // Necesario para ngClass
 @Component({
   selector: 'app-results',
   standalone: true,
-  imports: [CommonModule, RouterLink, MatCardModule, MatButtonModule, MatListModule, MatIconModule],
+  imports: [CommonModule, MatCardModule, MatButtonModule, MatListModule, MatIconModule],
   templateUrl: './results.html',
   styleUrl: './results.css'
 })

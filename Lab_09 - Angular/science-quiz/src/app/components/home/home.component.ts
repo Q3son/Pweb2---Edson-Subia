@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { Router, RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { QuizService } from '../../services/quiz.service';
@@ -7,7 +7,7 @@ import { QuizService } from '../../services/quiz.service';
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [RouterLink, MatButtonModule, MatCardModule],
+  imports: [MatButtonModule, MatCardModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
