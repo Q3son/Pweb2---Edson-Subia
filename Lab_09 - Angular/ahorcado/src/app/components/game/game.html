@@ -1,1 +1,39 @@
-<p>game works!</p>
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Juego del Ahorcado</mat-card-title>
+    <mat-card-subtitle>Adivina la palabra sobre Angular</mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content class="game-container">
+    <!-- Componente de la Figura: le pasamos el número de errores -->
+    <app-figure [mistakesCount]="hangmanService.mistakesCount()" />
+
+    <div class="game-info">
+      <!-- Mostramos la palabra con guiones -->
+      <h2 class="display-word">{{ hangmanService.displayWord() }}</h2>
+      
+      <!-- Mensajes de Victoria o Derrota -->
+      @if (hangmanService.gameStatus() === 'lost') {
+        <div class="game-over-message lost">
+          <h3>¡PERDISTE! La palabra era: {{ hangmanService.secretWord() }}</h3>
+          <button mat-flat-button color="warn" (click)="hangmanService.startNewGame()">
+            Jugar de Nuevo
+          </button>
+        </div>
+      }
+      @if (hangmanService.gameStatus() === 'won') {
+        <div class="game-over-message won">
+          <h3>¡GANASTE! ¡Felicidades!</h3>
+          <button mat-flat-button color="accent" (click)="hangmanService.startNewGame()">
+            Jugar de Nuevo
+          </button>
+        </div>
+      }
+
+      <app-keyboard
+        [triedLetters]="hangmanService.triedLetters()"
+        (letterPressed)="hangmanService.tryLetter($event)"
+      />
+    </div>
+  </mat-card-content>
+</mat-card>
