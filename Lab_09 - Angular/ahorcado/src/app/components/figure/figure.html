@@ -1,46 +1,39 @@
-<div class="figure-container">
-  <!-- Base del ahorcado -->
-  <svg height="250" width="200" class="figure-container">
-    <!-- Palo vertical -->
-    <line x1="60" y1="20" x2="60" y2="230" />
-    <!-- Palo horizontal -->
-    <line x1="60" y1="20" x2="140" y2="20" />
-    <!-- Cuerda -->
-    <line x1="140" y1="20" x2="140" y2="50" />
-    <!-- Base -->
-    <line x1="20" y1="230" x2="100" y2="230" />
+<svg height="250" width="200" class="figure-container">
+  <!-- Estructura fija con su nueva clase -->
+  <line class="structure-part" x1="60" y1="20" x2="60" y2="230" />
+  <line class="structure-part" x1="60" y1="20" x2="140" y2="20" />
+  <line class="structure-part" x1="140" y1="20" x2="140" y2="50" />
+  <line class="structure-part" x1="20" y1="230" x2="100" y2="230" />
 
-    <!-- Partes del cuerpo que aparecen con los errores -->
-    @switch (mistakesCount()) {
-      @case (1) { <!-- Cabeza -->
-        <circle cx="140" cy="70" r="20" class="figure-part" />
-      }
-      @case (2) { <!-- Cuerpo -->
-        <line x1="140" y1="90" x2="140" y2="150" class="figure-part" />
-      }
-      @case (3) { <!-- Brazo Izquierdo -->
-        <line x1="140" y1="120" x2="110" y2="100" class="figure-part" />
-      }
-      @case (4) { <!-- Brazo Derecho -->
-        <line x1="140" y1="120" x2="170" y2="100" class="figure-part" />
-      }
-      @case (5) { <!-- Pierna Izquierda -->
-        <line x1="140" y1="150" x2="110" y2="180" class="figure-part" />
-      }
-      @case (6) { <!-- Pierna Derecha -->
-        <line x1="140" y1="150" x2="170" y2="180" class="figure-part" />
-      }
-      @case (7) { <!-- Ojo Izquierdo -->
-        <line x1="130" y1="65" x2="135" y2="70" class="figure-part" />
-        <line x1="135" y1="65" x2="130" y2="70" class="figure-part" />
-      }
-      @case (8) { <!-- Ojo Derecho -->
-        <line x1="145" y1="65" x2="150" y2="70" class="figure-part" />
-        <line x1="150" y1="65" x2="145" y2="70" class="figure-part" />
-      }
-       @case (9) { <!-- Boca -->
-        <path d="M 130 80 Q 140 85 150 80" stroke="red" stroke-width="2" fill="none" class="figure-part" />
-      }
-    }
-  </svg>
-</div>
+  <!-- Partes del cuerpo del ahorcado -->
+  
+  @if (mistakesCount() >= 1) { <!-- Cabeza -->
+    <circle cx="140" cy="70" r="20" class="figure-part" />
+  }
+  @if (mistakesCount() >= 2) { <!-- Cuerpo -->
+    <line x1="140" y1="90" x2="140" y2="150" class="figure-part" />
+  }
+  @if (mistakesCount() >= 3) { <!-- Brazo Izquierdo -->
+    <line x1="140" y1="120" x2="110" y2="100" class="figure-part" />
+  }
+  @if (mistakesCount() >= 4) { <!-- Brazo Derecho -->
+    <line x1="140" y1="120" x2="170" y2="100" class="figure-part" />
+  }
+  @if (mistakesCount() >= 5) { <!-- Pierna Izquierda -->
+    <line x1="140" y1="150" x2="110" y2="180" class="figure-part" />
+  }
+  @if (mistakesCount() >= 6) { <!-- Pierna Derecha -->
+    <line x1="140" y1="150" x2="170" y2="180" class="figure-part" />
+  }
+  @if (mistakesCount() >= 7) { <!-- Ojo Izquierdo -->
+    <line x1="130" y1="65" x2="135" y2="70" class="figure-part eye" />
+    <line x1="135" y1="65" x2="130" y2="70" class="figure-part eye" />
+  }
+  @if (mistakesCount() >= 8) { <!-- Ojo Derecho -->
+    <line x1="145" y1="65" x2="150" y2="70" class="figure-part eye" />
+    <line x1="150" y1="65" x2="145" y2="70" class="figure-part eye" />
+  }
+  @if (mistakesCount() >= 9) { <!-- Boca Triste -->
+    <path d="M 130 80 Q 140 85 150 80" stroke="#c0392b" stroke-width="2" fill="none" class="figure-part mouth" />
+  }
+</svg>

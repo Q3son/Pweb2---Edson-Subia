@@ -1,4 +1,30 @@
-/* You can add global styles to this file, and also import other style files */
+@import "@angular/material/prebuilt-themes/indigo-pink.css";
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+/* Reseteo básico para eliminar márgenes y padding por defecto */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%; /* Muy importante: el cuerpo debe ocupar el 100% de la altura */
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background-color: #303030; /* Un fondo oscuro para que resalte el juego */
+  color: #fff; /* Texto blanco por defecto */
+}
+
+/* Hacemos que el componente raíz ocupe toda la pantalla y centre su contenido */
+app-root {
+  display: flex;
+  justify-content: center; /* Centrado horizontal */
+  align-items: center;    /* Centrado vertical */
+  height: 100%;
+  width: 100%;
+}
+
+/* Estilo para que las tarjetas de material resalten sobre el fondo oscuro */
+.mat-mdc-card {
+    background-color: #424242 !important; /* Un gris un poco más claro */
+    color: #fff !important;
+}
+
+.mat-mdc-card-title, .mat-mdc-card-subtitle {
+    color: #fff !important;
+}

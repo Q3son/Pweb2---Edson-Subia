@@ -1,9 +1,35 @@
-.figure-container svg {
-  stroke: #34495e; 
+/* Estilo para la estructura (la horca) */
+.structure-part {
+  stroke: #9e9e9e; /* Un color gris para la estructura */
   stroke-width: 4px;
   fill: transparent;
 }
 
+/* Estilo para las partes del cuerpo (el muñeco) */
 .figure-part {
-  stroke: #e74c3c; 
+  stroke: #e74c3c; /* Rojo para el muñeco */
+  stroke-width: 4px;
+  fill: transparent;
+  
+  /* Animación de dibujado SÓLO para las partes del cuerpo */
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: draw 1s linear forwards;
+}
+
+@keyframes draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Estilos específicos para los ojos y la boca */
+.eye, .mouth {
+    stroke-width: 3px;
+    animation-duration: 0.5s;
+}
+
+/* Estilo específico para la boca de "perdiste" */
+.mouth {
+    stroke: #c0392b; /* Un rojo más oscuro */
 }
