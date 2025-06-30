@@ -1,0 +1,9 @@
+.figure-container svg {
+  stroke: #34495e; /* Color de la estructura */
+  stroke-width: 4px;
+  fill: transparent;
+}
+
+.figure-part {
+  stroke: #e74c3c; /* Color del cuerpo */
+}
