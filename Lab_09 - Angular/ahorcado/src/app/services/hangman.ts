@@ -6,7 +6,7 @@ type GameStatus = 'playing' | 'won' | 'lost';
   providedIn: 'root'
 })
 export class Hangman {
-  private words = ['ANGULAR', 'TYPESCRIPT', 'COMPONENT', 'SERVICE', 'SIGNAL', 'DEVELOPER'];
+  private words = ['ANGULAR', 'TYPESCRIPT', 'COMPONENT', 'SERVICE', 'SIGNAL', 'DEVELOPER', 'SYSTEMS'];
   
   // *-- Banderas de ESTADO --+
   // La palabra que el jugador debe adivinar. Es privada.
@@ -40,6 +40,13 @@ export class Hangman {
     return 'playing';
   });
 
+  // Expone la palabra secreta SOLO si el juego se ha perdido.
+  public revealedWord = computed<string>(() => {
+    if (this.gameStatus() === 'lost') {
+      return this.secretWord();
+    }
+    return ''; // Devuelve una cadena vacía en cualquier otro caso.
+  });
 
   constructor() {
     this.startNewGame();

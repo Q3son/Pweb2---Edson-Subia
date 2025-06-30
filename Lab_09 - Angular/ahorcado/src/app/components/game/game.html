@@ -6,33 +6,33 @@
 
   <mat-card-content class="game-container">
     <!-- Componente de la Figura: le pasamos el número de errores -->
-    <app-figure [mistakesCount]="hangmanService.mistakesCount()" />
+    <app-figure [mistakesCount]="hangman.mistakesCount()" />
 
     <div class="game-info">
       <!-- Mostramos la palabra con guiones -->
-      <h2 class="display-word">{{ hangmanService.displayWord() }}</h2>
+      <h2 class="display-word">{{ hangman.displayWord() }}</h2>
       
       <!-- Mensajes de Victoria o Derrota -->
-      @if (hangmanService.gameStatus() === 'lost') {
+      @if (hangman.gameStatus() === 'lost') {
         <div class="game-over-message lost">
-          <h3>¡PERDISTE! La palabra era: {{ hangmanService.secretWord() }}</h3>
-          <button mat-flat-button color="warn" (click)="hangmanService.startNewGame()">
+          <h3>¡PERDISTE! La palabra era: {{ hangman.revealedWord() }}</h3>
+          <button mat-flat-button color="warn" (click)="hangman.startNewGame()">
             Jugar de Nuevo
           </button>
         </div>
       }
-      @if (hangmanService.gameStatus() === 'won') {
+      @if (hangman.gameStatus() === 'won') {
         <div class="game-over-message won">
           <h3>¡GANASTE! ¡Felicidades!</h3>
-          <button mat-flat-button color="accent" (click)="hangmanService.startNewGame()">
+          <button mat-flat-button color="accent" (click)="hangman.startNewGame()">
             Jugar de Nuevo
           </button>
         </div>
       }
 
       <app-keyboard
-        [triedLetters]="hangmanService.triedLetters()"
-        (letterPressed)="hangmanService.tryLetter($event)"
+        [triedLetters]="hangman.triedLetters()"
+        (letterPressed)="hangman.tryLetter($event)"
       />
     </div>
   </mat-card-content>
