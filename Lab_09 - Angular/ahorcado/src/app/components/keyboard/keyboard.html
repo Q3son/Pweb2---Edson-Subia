@@ -1,1 +1,11 @@
-<p>keyboard works!</p>
+<div class="keyboard-container">
+  @for (letter of alphabet; track letter) {
+    <button
+      mat-raised-button
+      color="primary"
+      [disabled]="triedLetters().includes(letter)"
+      (click)="onLetterClick(letter)">
+      {{ letter }}
+    </button>
+  }
+</div>
