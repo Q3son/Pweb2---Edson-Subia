@@ -1,1 +1,30 @@
-<p>results works!</p>
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Resultados del Quiz</mat-card-title>
+    <mat-card-subtitle>Puntuación final: {{ quizService.score() }} / {{ quizService.questions().length }}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <h3>Resumen de tus respuestas:</h3>
+    <mat-list>
+      @for (question of quizService.questions(); track $index) {
+        <mat-list-item>
+          @if (quizService.userAnswers()[$index] === question.correctAnswer) {
+            <mat-icon matListItemIcon color="primary">check_circle</mat-icon>
+          } @else {
+            <mat-icon matListItemIcon color="warn">cancel</mat-icon>
+          }
+          <div matListItemTitle>{{ question.question }}</div>
+          <div matListItemLine>
+            <span>Tu respuesta: <strong [ngClass]="{'correct': quizService.userAnswers()[$index] === question.correctAnswer, 'incorrect': quizService.userAnswers()[$index] !== question.correctAnswer}">{{ quizService.userAnswers()[$index] || 'No respondida' }}</strong></span>
+          </div>
+          <div matListItemLine>
+            <span class="correct">Respuesta correcta: {{ question.correctAnswer }}</span>
+          </div>
+        </mat-list-item>
+      }
+    </mat-list>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-raised-button color="primary" (click)="restartQuiz()">Jugar de Nuevo</button>
+  </mat-card-actions>
+</mat-card>
