@@ -27,4 +27,10 @@ export class App {
   toggleHobbies(){
     this.showHobbies = !this.showHobbies;
   }
+  newHobby(hobby){
+    //console.log(hobby.value);
+    this.hobbies.push(hobby.value);
+    hobby.value = "";
+    return false;
+  }
 }
