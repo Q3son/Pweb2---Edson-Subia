@@ -35,7 +35,24 @@ export class App {
     hobby.value = "";
     return false;
   }
+  
   sayHello(){
     alert("Hola desde App");
   }
+  addUser(newUser: { value: string; focus: () => void; }){
+    //console.log(newUser.value);
+    this.users.push(newUser.value);
+    newUser.value = '';
+    newUser.focus();
+    return false;
+  }
+  
+  deleteUser(user: string){
+    for(let i=0; i<this.users.length; i++){
+      if (user==this.users[i]){
+        this.users.splice(i,1);
+      }
+    }
+  }
+
 }

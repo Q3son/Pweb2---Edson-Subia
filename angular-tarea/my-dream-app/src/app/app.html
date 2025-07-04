@@ -24,7 +24,16 @@
 </ul>
 
 <button (click)="sayHello()">Clickéame</button>
-
+<h1>Desde app (component)</h1>
+<form (submit)="addUser(newUser)">
+  <input type="text" #newUser>
+  <button>Agregar Usuario</button>
+</form>
+<ul>
+  <li *ngFor="let user of users">
+    {{ user }} <button (click)="deleteUser(user)">Borrar usuario</button>
+  </li>
+</ul>
 <div class="black">
   <h1> {{ title }} </h1>
 </div> 
