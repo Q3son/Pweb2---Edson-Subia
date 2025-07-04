@@ -9,4 +9,8 @@ import { Component, OnInit, Input } from '@angular/core';
 export class User implements OnInit{
   @Input() nameUser: any;
   ngOnInit(): void { }
+  
+  sayhello(nameUser: string){
+    alert("Hola "+nameUser);
+  }
 }
