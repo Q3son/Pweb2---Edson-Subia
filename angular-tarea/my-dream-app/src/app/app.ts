@@ -8,6 +8,8 @@ import { RouterOutlet } from '@angular/router';
   styleUrl: './app.css'
 })
 export class App {
+  users = ['Edson','Jose','Jonathan','Valeria'];
+  activated = false;
   title = 'my-dream-app';
   name : string;
   email; // : string :
@@ -27,7 +29,7 @@ export class App {
   toggleHobbies(){
     this.showHobbies = !this.showHobbies;
   }
-  newHobby(hobby){
+  newHobby(hobby: { value: string; }){
     //console.log(hobby.value);
     this.hobbies.push(hobby.value);
     hobby.value = "";
