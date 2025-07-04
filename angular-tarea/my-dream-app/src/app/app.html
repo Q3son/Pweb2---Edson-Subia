@@ -5,5 +5,15 @@
 <div class="ash">
   <h2>{{ name }}</h2>
   <h2>{{ email }}</h2>
-  <h2>{{ webpage }}</h2>
+
+  <div *ngIf="showhobbies()" class="component2">
+    <h3>hobbies:</h3>
+    <ul>
+      <li *ngFor=" let hobby of hobbies">{{ hobby }}</li>
+    </ul> 
+  </div>
+  <a href="{{ webpage }}" target="_blank">Visita my página web</a>
+</div>
+<div class="black">
+  <h1> {{ title }} </h1>
 </div> 
