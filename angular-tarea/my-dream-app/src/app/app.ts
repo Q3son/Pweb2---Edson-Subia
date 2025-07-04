@@ -9,7 +9,18 @@ import { RouterOutlet } from '@angular/router';
 })
 export class App {
   title = 'my-dream-app';
-  name = "Edson Fabricio Subia Huaicane";
-  email = "esubiahu@unsa.edu.pe";
-  webpage = "https://www.unsa.edu.pe";
+  name : string;
+  email; // : string :
+  webpage: string;
+  hobbies: string[];
+  constructor(){
+    console.log("Constructor working...");
+    this.name = "Edson Fabricio Subia Huaicane";
+    this.email = "esubiahu@unsa.edu.pe";
+    this.webpage = "https://www.unsa.edu.pe";
+    this.hobbies = ["Basquet","Games Developing","HBO-MAX"];
+  }
+  showhobbies() {
+    return true;
+  }
 }
