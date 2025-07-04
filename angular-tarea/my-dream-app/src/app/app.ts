@@ -2,14 +2,17 @@ import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common'; 
 import { HelloWorld } from './hello-world/hello-world';
-import { User } from './user/user';  
+import { User } from './user/user';
+import { FormsModule } from '@angular/forms';  
 @Component({
   selector: 'app-root',
+  standalone: true,
   imports: [
     CommonModule, 
     RouterOutlet,
     HelloWorld,
-    User
+    User,
+    FormsModule
   ],
   templateUrl: './app.html',
   styleUrl: './app.css'
@@ -17,6 +20,7 @@ import { User } from './user/user';
 export class App {
   title = 'my-dream-app';
   name : string;
+  age : number;
   email; // : string :
   webpage: string;
   hobbies: string[];
@@ -26,6 +30,7 @@ export class App {
   constructor(){
     console.log("Constructor working...");
     this.name = "Edson Fabricio Subia Huaicane";
+    this.age = 20;
     this.email = "esubiahu@unsa.edu.pe";
     this.webpage = "https://www.unsa.edu.pe";
     this.hobbies = ["Basquet","Games Developing","HBO-MAX"];
