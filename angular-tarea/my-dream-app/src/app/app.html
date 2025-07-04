@@ -5,7 +5,7 @@
 <div class="ash">
   <h2>{{ name }}</h2>
   <h2>{{ email }}</h2>
-
+  <button(click)="toggleHobbies() class="btn">Mostrar hobbies</button>
   <div *ngIf="showhobbies()" class="component2">
     <h3>hobbies:</h3>
     <ul>

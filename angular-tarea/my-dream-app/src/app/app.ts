@@ -13,14 +13,18 @@ export class App {
   email; // : string :
   webpage: string;
   hobbies: string[];
+  showHobbies: boolean;
+  
   constructor(){
     console.log("Constructor working...");
     this.name = "Edson Fabricio Subia Huaicane";
     this.email = "esubiahu@unsa.edu.pe";
     this.webpage = "https://www.unsa.edu.pe";
     this.hobbies = ["Basquet","Games Developing","HBO-MAX"];
+    this.showHobbies = false;
   }
-  showhobbies() {
-    return true;
+
+  toggleHobbies(){
+    this.showHobbies = !this.showHobbies;
   }
 }
