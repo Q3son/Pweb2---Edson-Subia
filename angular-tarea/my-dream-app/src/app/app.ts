@@ -1,17 +1,20 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
 import { CommonModule } from '@angular/common'; 
 import { HelloWorld } from './hello-world/hello-world';
 import { User } from './user/user';
 import { FormsModule } from '@angular/forms';
 import { Data } from './data'; 
 import { Post } from './Post';  
+import { Router } from 'express';
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [
     CommonModule, 
     RouterOutlet,
+    RouterLink,
+    RouterLinkActive,
     HelloWorld,
     User,
     FormsModule,
