@@ -1,22 +1,28 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-
+import { CommonModule } from '@angular/common'; 
+import { HelloWorld } from './hello-world/hello-world';
+import { User } from './user/user';  
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [
+    CommonModule, 
+    RouterOutlet,
+    HelloWorld,
+    User
+  ],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
 export class App {
-  users = ['Edson','Jose','Jonathan','Valeria'];
-  activated = false;
   title = 'my-dream-app';
   name : string;
   email; // : string :
   webpage: string;
   hobbies: string[];
   showHobbies: boolean;
-  
+  users = ['Edson','Jose','Jonathan','Valeria'];
+  activated = false;
   constructor(){
     console.log("Constructor working...");
     this.name = "Edson Fabricio Subia Huaicane";
