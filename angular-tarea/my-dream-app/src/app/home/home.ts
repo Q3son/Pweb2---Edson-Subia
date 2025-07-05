@@ -5,15 +5,11 @@ import { User } from '../user/user';
 import { FormsModule } from '@angular/forms';
 import { Data } from '../data'; 
 import { Post } from '../Post';  
+import { SafePipe } from '../safe-pipe';
 
 @Component({
   selector: 'app-home',
-  imports: [
-    CommonModule, 
-    HelloWorld,
-    User,
-    FormsModule,
-  ],
+  imports: [CommonModule, HelloWorld, User, FormsModule, SafePipe],
   templateUrl: './home.html',
   styleUrl: './home.css'
 })
@@ -39,6 +35,7 @@ export class Home implements OnInit {
     this.hobbies = ["Basquet","Games Developing","HBO-MAX"];
     this.showHobbies = false;
   }
+
   ngOnInit() {
     this.dataService.getData().subscribe((data: Post[]) => {
       //console.log(data);
@@ -73,5 +70,6 @@ export class Home implements OnInit {
       }
     }
   }
-
+  
+  videoUrl = 'https://www.youtube.com/embed/6ZfuNTqbHE8';
 }

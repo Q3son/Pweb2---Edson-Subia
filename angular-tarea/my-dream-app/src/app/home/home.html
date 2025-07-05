@@ -1,53 +1,68 @@
-    <div class="ash">
-      <h2>{{ name }}</h2>
-      <h2>{{ email }}</h2>
-      <button (click)="toggleHobbies()" class='btn'>Mostrar hobbies</button>
-      <div *ngIf="showHobbies" class="component2">
-        <h3>hobbies:</h3>
-        <ul>
-          <li *ngFor=" let hobby of hobbies">{{ hobby }}</li>
-        </ul> 
-      </div>
-      <a href="{{ webpage }}" target="_blank">Visita my página web</a>
-    </div>
-    <form (submit)="newHobby(hobby)">
-      <input #hobby type="text" placeholder="hobby">
-    </form>
-    <app-hello-world>Aquí</app-hello-world>
-
+<div class="ash">
+  <h2>{{ name }}</h2>
+  <h2>{{ email }}</h2>
+  <button (click)="toggleHobbies()" class='btn'>Mostrar hobbies</button>
+  <div *ngIf="showHobbies" class="component2">
+    <h3>hobbies:</h3>
     <ul>
-      <app-user *ngFor="let user of users" [nameUser]="user"> </app-user>
-    </ul>
-
-  <button (click)="sayHello()">Clickéame</button>
-  <h1>Desde app (component)</h1>
-  <form (submit)="addUser(newUser)">
-    <input type="text" #newUser>
-    <button>Agregar Usuario</button>
-  </form>
-  <ul>
-    <li *ngFor="let user of users">
-      {{ user }} <button (click)="deleteUser(user)">Borrar usuario</button>
-    </li>
-  </ul>
-  <div>
-    <form>
-          <p>
-        <label>Nombre:</label>
-        <input type="text" name="nameInput" [(ngModel)]="name">
-      </p>
-      <p>
-        <label>Edad:</label>
-        <input type="number" name="ageInput" [(ngModel)]="age">
-      </p>
-    </form>
-    <hr>
-    <h2>Name: {{ name }}</h2>
-    <h2>Age: {{ age }}</h2>
+      <li *ngFor=" let hobby of hobbies">{{ hobby }}</li>
+    </ul> 
   </div>
+  <a href="{{ webpage }}" target="_blank">Visita my página web</a>
+</div>
+  <form (submit)="newHobby(hobby)">
+    <input #hobby type="text" placeholder="hobby">
+  </form>
+
+<app-hello-world>Aquí</app-hello-world>
+
+<ul>
+  <app-user *ngFor="let user of users" [nameUser]="user"> </app-user>
+</ul>
+
+<button (click)="sayHello()">Clickéame</button>
+<h1>Desde app (component)</h1>
+<form (submit)="addUser(newUser)">
+  <input type="text" #newUser>
+  <button>Agregar Usuario</button>
+</form>
+<ul>
+  <li *ngFor="let user of users">
+    {{ user }} <button (click)="deleteUser(user)">Borrar usuario</button>
+  </li>
+</ul>
+<div>
+  <form>
+        <p>
+      <label>Nombre:</label>
+      <input type="text" name="nameInput" [(ngModel)]="name">
+    </p>
+    <p>
+      <label>Edad:</label>
+      <input type="number" name="ageInput" [(ngModel)]="age">
+    </p>
+  </form>
+  <hr>
+  <h2>Name: {{ name }}</h2>
+  <h2>Age: {{ age }}</h2>
+</div>
   <div class="black">
     <h1> {{ title }} </h1>
-  </div>
+</div>
+
+<hr>
+<h2>Video Destacado</h2>
+<div class="video-container">
+  <!-- 
+    - [src]="videoUrl | safe": Pasamos la URL a nuestro pipe 'safe'.
+    - El pipe la procesa y devuelve una URL segura que Angular permite renderizar.
+  -->
+  <iframe width="560" height="315" [src]="videoUrl | safe" 
+          title="YouTube video player" frameborder="0" 
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+          allowfullscreen>
+  </iframe>
+</div>
 
 <div *ngIf="posts.length > 0; else loadingPosts">
   <div *ngFor="let post of posts" class="post-item">
