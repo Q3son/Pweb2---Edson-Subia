@@ -1,20 +1,36 @@
-.black {
-    background-color: black;
-    color: white;
+:host {
+  display: block;
+  font-family: sans-serif;
 }
-.ash {
-    background-color: #eee;
-    color: black;
+
+
+header {
+  background-color: #333; 
+  color: white;
+  padding: 1rem 2rem;
+  border-bottom: 3px solid #61dafb; 
 }
-.component2 {
-    background-color: #555;
-    color: red;
-    padding: 20px;
+
+header h1 {
+  margin: 0;
+  color: white; 
 }
-.btn {
-    padding: 20px;
-    color:white;
-    background-color: brown;
-    display: block;
-    margin: 3px;
+
+nav a {
+  color: #eee;
+  margin-right: 1.5rem;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+nav a:hover {
+  color: white;
+}
+
+nav a.active-link {
+  color: #61dafb; 
+}
+
+main {
+  padding: 2rem;
 }

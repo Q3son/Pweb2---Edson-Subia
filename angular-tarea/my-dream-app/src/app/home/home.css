@@ -1,0 +1,48 @@
+.ash {
+  background-color: #eee;
+  color: black;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.component2 {
+  background-color: #555;
+  color: red;
+  padding: 20px;
+  border-radius: 8px;
+  margin-top: 10px;
+}
+
+.btn {
+  padding: 10px 20px;
+  color: white;
+  background-color: brown;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 3px;
+}
+
+.btn:hover {
+  opacity: 0.9;
+}
+.post-item {
+  background-color: #f9f9f9; 
+  border: 1px solid #ddd;   
+  border-radius: 8px;       
+  padding: 16px;           
+  margin-bottom: 16px;      
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); 
+}
+
+.post-item h2 {
+  margin-top: 0;
+  color: #333;
+  font-size: 1.2rem;
+}
+
+.post-item p {
+  color: #666;
+  line-height: 1.6;
+}
