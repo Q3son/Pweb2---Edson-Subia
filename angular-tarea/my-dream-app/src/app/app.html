@@ -3,12 +3,14 @@
 <div class="black">
   <header class="main-header">
   <h1> {{ title }} </h1>
-    <nav>
+  <nav>
     <!-- Este es tu nuevo menú de navegación. -->
-    <a routerLink="/" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Inicio</a>
-    <a routerLink="/posts" routerLinkActive="active-link">Posts</a>
-    <a routerLink="/about" routerLinkActive="active-link">Acerca de</a>
-    <a routerLink="/hello" routerLinkActive="active-link">Hola Mundo</a>
+      <ul>
+        <li><a routerLink="/" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Inicio</a></li>
+        <li><a routerLink="/posts" routerLinkActive="active-link">Posts</a></li>
+        <li><a routerLink="/about" routerLinkActive="active-link">Acerca de</a></li>
+        <li><a routerLink="/hello" routerLinkActive="active-link">Hola Mundo</a></li>
+      </ul>
   </nav>
 </header>
 
