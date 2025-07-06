@@ -1,16 +1,19 @@
-<div class="black">
-  <header class="main-header">
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
-    <a class="navbar-brand" routerLink="/">my-dream-app</a>
-    <button class="navbar-toggler" type="button" 
-            (click)="isCollapsed = !isCollapsed" 
-            [attr.aria-expanded]="!isCollapsed" 
-            aria-controls="navbarNav">
+
+    <!-- El título de tu app, que también es un enlace a la página de inicio -->
+    <a class="navbar-brand" routerLink="/">{{ title }}</a>
+
+    <!-- Botón "hamburguesa" que aparecerá en móviles (no será funcional sin JS, pero es visualmente correcto) -->
+    <button class="navbar-toggler" type="button" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarNav" [collapse]="isCollapsed" [isAnimated]="true">
-      <ul class="navbar-nav">
+
+    <!-- El contenedor de los enlaces de navegación -->
+    <div class="collapse navbar-collapse">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        
+        <!-- Cada enlace es ahora un 'nav-item' con un 'nav-link' -->
         <li class="nav-item">
           <a class="nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Inicio</a>
         </li>
@@ -23,16 +26,15 @@
         <li class="nav-item">
           <a class="nav-link" routerLink="/hello" routerLinkActive="active">Hola Mundo</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/cart" routerLinkActive="active">Carrito</a>
+        </li>
+
       </ul>
     </div>
   </div>
 </nav>
-</header>
 
-<main class="main-content">
+<main class="container mt-4">
   <router-outlet></router-outlet>
 </main>
-
-<footer class="main-footer">
-  <p>Mi Aplicación en Angular © 2025</p>
-</footer>
