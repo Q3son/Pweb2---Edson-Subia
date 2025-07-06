@@ -1,0 +1,56 @@
+<h2>Carrito de Compras</h2>
+
+<!-- Usamos clases de Bootstrap para que la tabla se vea mejor -->
+<table class="table table-hover align-middle">
+  <thead>
+    <tr>
+      <th>Pagar</th>
+      <th>Producto</th>
+      <th>Precio Unit.</th>
+      <th>Cantidad</th>
+      <th>Subtotal</th>
+      <th>Acción</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- 
+      - [class.table-light]="item.completed": Le da un color de fondo gris a la fila si el ítem está "completado".
+      - [class.text-muted]="item.completed": Atenúa el color del texto.
+    -->
+    <tr *ngFor="let item of items" [class.table-light]="item.completed" [class.text-muted]="item.completed">
+      <td>
+        <!-- 
+          - [checked]="!item.completed": El checkbox está marcado si el ítem SÍ se va a pagar.
+          - (change)="toggleItem(item)": Cuando cambia el estado del checkbox, llama a nuestro método.
+        -->
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" 
+                 [checked]="!item.completed" 
+                 (change)="toggleItem(item)">
+        </div>
+      </td>
+      <td>
+        <!-- [class.text-decoration-line-through]: Tacha el texto si está completado -->
+        <span [class.text-decoration-line-through]="item.completed">
+          {{ item.name }}
+        </span>
+      </td>
+      <td>{{ item.price | currency:'S/ ' }}</td>
+      <td>{{ item.quantity }}</td>
+      <td>{{ (item.price * item.quantity) | currency:'S/ ' }}</td>
+      <td>
+        <!-- (click)="deleteItem(item)": Llama a nuestro método de eliminar al hacer click -->
+        <button class="btn btn-danger btn-sm" (click)="deleteItem(item)">
+          Eliminar
+        </button>
+      </td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <!-- Usamos clases de Bootstrap para alinear el texto -->
+      <td colspan="5" class="text-end fs-5"><strong>Total a pagar:</strong></td>
+      <td class="fs-5"><strong>{{ total | currency:'S/ ' }}</strong></td>
+    </tr>
+  </tfoot>
+</table>
