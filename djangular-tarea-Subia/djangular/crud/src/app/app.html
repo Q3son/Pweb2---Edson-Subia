@@ -1,8 +1,10 @@
 <!--Mi lista aqui va -->
-  <h2>Lista de Movies:</h2>
-  <ul>
-    <li *ngFor="let movie of movies">
-      <h2> {{movie.id }}: Titulo: {{ movie.title }} <br>
-Descripcion: {{ movie.desc }}. Año: {{ movie.year }}</h2>
+<h2>Lista de Movies:</h2>
+<ul>
+  @for (movie of movies; track movie.id) {
+    <li>
+      <h3>{{ movie.id }}. {{ movie.title }} ({{ movie.year }})</h3>
+      <p>{{ movie.desc }}</p>
     </li>
-  </ul>
+  }
+</ul>

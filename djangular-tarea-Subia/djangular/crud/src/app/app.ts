@@ -1,18 +1,18 @@
-import { HttpClient } from '@angular/common/http'; 
 import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
 import { Api } from './api';
+import { Movie } from './api';
 
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, HttpClient],
+  imports: [ ],
   templateUrl: './app.html',
   styleUrl: './app.css',
 })
+
 export class App {
   protected readonly title = signal('crud');
-  movies = [{id:1,title:'peli1',year:2021},{id:2,title:'peli2',year:2022}];
+  movies: Movie[] = [];
   constructor(private api:Api) {
     this.getMovies();
   }
