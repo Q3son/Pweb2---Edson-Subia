@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http'; 
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { Api } from './api';
@@ -5,10 +6,9 @@ import { Api } from './api';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, HttpClient],
   templateUrl: './app.html',
   styleUrl: './app.css',
-  providers: [Api]
 })
 export class App {
   protected readonly title = signal('crud');
@@ -17,15 +17,18 @@ export class App {
     this.getMovies();
   }
   getMovies = () => {
-    this.api.getAllMovies().subscribe (
-      (data: any) => {
-        console.log('Datos recibidos:', data);
-        this.movies = data;  
-        data.results;
-      },
-      (error: any) => {
-        console.error('Error al obtener datos:', error);
-      } 
-    ) 
-  } 
+      this.api.getAllMovies().subscribe({
+        next: (data: any) => { 
+          console.log('Datos recibidos:', data);
+          this.movies = data;
+        },
+        error: (error: any) => { 
+          console.error('Error al obtener datos:', error);
+        },
+        complete: () => {
+          console.log('La subscripción ha finalizado.');
+        }
+      }
+    )
+  }
 }
